@@ -67,7 +67,11 @@ $site = ["Wrights Desk", "wrightsdesk.com"];
 <body>
    <span><em>Project:</em> <strong> <?= $site[0] ?></strong>
       &emsp;
-      <a href="docs/README.md" target="siteView" title="Readme Page">👁️‍🗨️</a>
+      <!-- <a href="docs/README.md" target="siteView" title="Readme Page">👁️‍🗨️</a> -->
+	<a href="data:text/html;charset=utf-8,<html><body>
+         <?= htmlspecialchars($readmeMD) ?>
+         </body></html>" target="siteView" title="README.md Page">👁️‍🗨️</a>
+
       <ul>
          <?php
          foreach ($subdir as $dir) {
