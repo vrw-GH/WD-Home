@@ -6,10 +6,14 @@
 
 ---
 
+<pre>
 Versions:
+  *Beta:      <a href="https://github.com/vrw-GH/WD-Home/tree/main/builds/_current">WD-Home/builds/_current</a>
+  *Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/main/dev">WD-Home/dev</a>
+  *Live Site: <a href="http://www.wrightsdesk.com">wrightsdesk.com</a>
 
-* Online: [Beta](./builds/_current/index.php)
-* Dev Build: [current](./dev/index.php)
-
-* Live: [wrightsdesk.com](https://www.wrightsdesk.com)
-
+Developer:   Victor Wright
+Client:      .self.
+Date:        28 Mar 2023
+GH Page:     <a href="https://vrw-gh.github.io/WD-Home/">vrw-gh.github.io/WD-Home</a>
+</pre>
