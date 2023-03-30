@@ -1,2 +1,0 @@
-# WD-Home
-WrightsDesk
