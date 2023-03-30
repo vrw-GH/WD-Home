@@ -9,6 +9,6 @@
 Versions:
 
 * Online: [Beta](./builds/_current/index.php)
-* Dev Build: [current](./builds/_current/index.php)
+* Dev Build: [current](./dev/index.php)
 
-* Live: [jfalanka.com](https://www.wrightsdesk.com)
+* Live: [wrightsdesk.com](https://www.wrightsdesk.com)
