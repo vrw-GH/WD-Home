@@ -8,6 +8,7 @@
    <title>Wrights Desk</title>
 
    <style>
+
    * {
       background-color: transparent;
       margin: 0;
@@ -130,6 +131,7 @@
 </head>
 
 <body>
+
    <div class="headlines hl1">
       Wrights Desk
    </div>
