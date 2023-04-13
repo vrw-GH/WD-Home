@@ -106,6 +106,7 @@
    </style>
 
    <style>
+
    .navbar-tags {
       list-style-position: inside;
       list-style-type: none;
@@ -125,6 +126,7 @@
 
    <style>
    iframe[name=viewport] {
+
       display: flex;
       z-index: 0;
       width: 100%;
@@ -145,6 +147,7 @@
       width: 100%;
       position: absolute;
       bottom: 5px;
+
    }
    </style>
 </head>
@@ -203,6 +206,7 @@
    <footer>
       🤙 <a href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
+
 
 </body>
 
