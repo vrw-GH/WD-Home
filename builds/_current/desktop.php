@@ -147,7 +147,6 @@
       width: 100%;
       position: absolute;
       bottom: 5px;
-
    }
    </style>
 </head>
@@ -206,8 +205,7 @@
    <footer>
       🤙 <a href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
-
-
+   
 </body>
 
 </html>
