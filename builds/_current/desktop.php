@@ -9,6 +9,22 @@
    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+   <meta name="author" content="Victor Wright" />
+   <meta name="description"
+      content="The Wright's website is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+   <meta property="og:image" content="https://avatars.githubusercontent.com/u/81757839?v=4" />
+   <meta property="og:description"
+      content="The Wright's website is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+   <meta property="og:title" content="The Wright's Desk" />
+   <meta name="twitter:title" content="The Wright's Desk" />
+
+   <script src="resources/script.js" defer></script>
+
+   <link href="resources/favicon.ico" rel="icon" type="image/x-icon">
+   <link href="resources/style.css" rel="stylesheet">
+   <link href="https://vrw-gh.github.io/vrw-GH" rel="preload" as="document" type="text/html" crossorigin="anonymous"
+      fetchpriority="high" />
+
    <title><?= $site_title ?></title>
 
    <style>
@@ -62,7 +78,7 @@
    }
 
    .hl2 {
-      padding-left: min(1.5rem, 3%);
+      padding-left: min(0.5rem, 1%);
       cursor: pointer;
       width: 0.7em;
       overflow: hidden;
@@ -85,33 +101,36 @@
    .row {
       display: flex;
       width: calc(100%);
+      height: calc(90vh - 3rem);
       margin-left: 0.5rem;
       margin-right: 1.0rem;
+      /* border: 1px solid red; */
    }
 
    .col-left {
-      width: max(1rem, 5vw);
-      max-width: 200px;
-      min-width: 2em;
+      width: max(2rem, 5vw);
+      max-width: 50px;
+      min-width: 1em;
       background-color: transparent;
+      /* border: 1px solid greenyellow; */
    }
 
    .col-right {
-      margin-right: 0.1rem;
       width: calc(100%);
-      height: calc(90vh - 3rem);
+      /* height: calc(90vh - 3rem);       */
       background-color: transparent;
-      /* border: 1px solid green; */
+      overflow: auto;
+      /* border: 1px solid yellow; */
    }
    </style>
 
    <style>
-
    .navbar-tags {
       list-style-position: inside;
       list-style-type: none;
       padding-top: 3px;
       margin-left: 0;
+
    }
 
    .navbar-tags>.dropdown {
@@ -126,7 +145,6 @@
 
    <style>
    iframe[name=viewport] {
-
       display: flex;
       z-index: 0;
       width: 100%;
@@ -147,16 +165,15 @@
       width: 100%;
       position: absolute;
       bottom: 5px;
+
    }
    </style>
 </head>
 
-
-
 <body>
 
    <?php
-   $viewport_style = 'height:0';
+   $viewport_style = 'height:0;';
    ?>
 
    <div class="headlines hl1">
@@ -179,7 +196,7 @@
                </li>
                <li class="navbar-tags">
                   <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport"
-                        onclick="$viewport_style = 'height:100%;background-color:rgba(255,255,255,0.9); scroll:none'">
+                        onclick="$viewport_style = 'height:100%; background-color:rgba(255,255,255,0.9); scroll:none'">
                         <b>•&nbsp;About</b>&emsp;··· About Me
                      </a></span>
                </li>
@@ -196,16 +213,31 @@
 
       </column>
       <column class="col-right">
-         <iframe name="viewport" src="about:blank" frameborder="0" title="viewport" height="0"
-            onLoad="this.style=$viewport_style">
+
+         <iframe name="viewport" src="" frameborder="0" title="viewport" height="0" onLoad="this.style=$viewport_style">
          </iframe>
+
+
+
+         <?php if ($viewport_style == 'height:0;') { ?>
+
+         <canvas id="canvas">Canvas is not supported in your browser.</canvas>
+         <input id="text" type="text" value="" placeholder="Type your name" autofocus />
+
+
+         <?php } else { ?>
+         <?php }  ?>
+
+
+
+
       </column>
    </row>
 
    <footer>
       🤙 <a href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
-   
+
 </body>
 
 </html>
