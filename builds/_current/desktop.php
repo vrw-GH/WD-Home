@@ -174,6 +174,7 @@
 
    <?php
    $viewport_style = 'height:0;';
+   $canvas_style = 'height:100%;';
    ?>
 
    <div class="headlines hl1">
@@ -184,7 +185,8 @@
          <div>
             <ul class="headlines hl2 navbar-list ">
                <li class="navbar-tags">
-                  <span><a href="about:blank" target="viewport" onclick="$viewport_style = 'height:0;'">
+                  <span><a href="about:blank" target="viewport"
+                        onclick="{$viewport_style = 'height:0;';$canvas_style = 'height:100;'}">
                         <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
                      </a></span>
                   <ul class="dropdown">
@@ -196,7 +198,7 @@
                </li>
                <li class="navbar-tags">
                   <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport"
-                        onclick="$viewport_style = 'height:100%; background-color:rgba(255,255,255,0.9); scroll:none'">
+                        onclick="{$viewport_style = 'height:100%; background-color:rgba(255,255,255,0.9); scroll:none';$canvas_style = 'height:10;'}">
                         <b>•&nbsp;About</b>&emsp;··· About Me
                      </a></span>
                </li>
@@ -214,19 +216,21 @@
       </column>
       <column class="col-right">
 
-         <iframe name="viewport" src="" frameborder="0" title="viewport" height="0" onLoad="this.style=$viewport_style">
+         <iframe name="viewport" src="" frameborder="0" title="viewport" height="0" onLoad="{
+            this.style=$viewport_style;
+            canvas.style='height:20%;';
+            }">
+
          </iframe>
 
-
-
-         <?php if ($viewport_style == 'height:0;') { ?>
-
-         <canvas id="canvas">Canvas is not supported in your browser.</canvas>
-         <input id="text" type="text" value="" placeholder="Type your name" autofocus />
-
-
-         <?php } else { ?>
-         <?php }  ?>
+         <?php
+         if ($viewport_style === 'height:0;') {
+            // if ($canvas_style = 'height:100%;') {
+            echo '<canvas id="canvas" style="$canvas_style">Canvas is not supported in your browser.</canvas>';
+            echo '<input id="text" type="text" value="" placeholder="Type your name" maxlength="12" autofocus="autofocus" />';
+         } else {
+         }
+         ?>
 
 
 
