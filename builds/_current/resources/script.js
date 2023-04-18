@@ -3,15 +3,18 @@ var canvas = document.querySelector("#canvas"),
     particles = [],
     amount = 0,
     mouse = { x: 0, y: 0 },
-    radius = 1;
-
-// var colors = ["#FFAEE7", "#A18704", "#F2FF3B", "#FF8E4D", "#3D00CA"]; 
-var colors = ["#FF2E2E", "#C40404", "#D1B22A", "#FF9100", "#881905"];
-
-var copy = document.querySelector("#text");
+    // radius = 0.4;
+    radius = Math.random() * 1.2 + 0.4;
 
 var ww = canvas.width = window.innerWidth;
 var wh = canvas.height = window.innerHeight;
+
+var textField = document.querySelector("#text");
+
+// var colors = ["#FFAEE7", "#A18704", "#F2FF3B", "#FF8E4D", "#3D00CA"]; //original
+var colors1 = ["#62CBFC", "#454ECF", "#FFDF8F", "#00FFDD", "#05885C"]; //blues
+var colors2 = ["#FFEA2E", "#CF7C45", "#B38D12", "#FF0000", "#880E05"]; //reds
+var colors = colors1;
 
 function Particle(x, y) {
     this.x = Math.random() * ww;
@@ -20,21 +23,23 @@ function Particle(x, y) {
         x: x,
         y: y
     };
-    this.r = Math.random() * 5 + 2;
+
+    this.r = Math.random() * Math.floor(ww / 200) + Math.floor(ww / 300); //size of particles rand*smallest + biggest
+
     this.vx = (Math.random() - 0.5) * 20;
     this.vy = (Math.random() - 0.5) * 20;
     this.accX = 0;
     this.accY = 0;
-    this.friction = Math.random() * 0.02 + 0.94;
+    // this.friction = Math.random() * 0.02 + 0.94;
+    this.friction = Math.random() * 0.005 + 0.94;
 
     this.color = colors[Math.floor(Math.random() * 6)];
 }
 
 Particle.prototype.render = function () {
 
-
-    this.accX = (this.dest.x - this.x) / 800;
-    this.accY = (this.dest.y - this.y) / 800;
+    this.accX = (this.dest.x - this.x) / 500; // /800
+    this.accY = (this.dest.y - this.y) / 500;
     this.vx += this.accX;
     this.vy += this.accY;
     this.vx *= this.friction;
@@ -62,8 +67,10 @@ Particle.prototype.render = function () {
 }
 
 function onMouseMove(e) {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    // mouse.x = e.clientX;
+    mouse.x = Math.floor(e.clientX * (1 + (window.innerWidth - canvas.clientWidth) / window.innerWidth) - 45);
+
+    mouse.y = Math.floor(e.clientY * (1 + (window.innerHeight - canvas.clientHeight) / window.innerHeight) - 90);
 }
 
 function onTouchMove(e) {
@@ -84,13 +91,15 @@ function initScene() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.font = "bold " + (ww / 10) + "px sans-serif";
+    ctx.font = "bold " + (ww / 10) + "px sans-serif"; //standard font
     ctx.textAlign = "center";
-    // ctx.fillText(copy.value, ww / 2, wh / 2);
-    if (copy.value != "") {
-        ctx.fillText("Welcome, " + copy.value, ww / 2, wh / 2);
+    if (textField.value != "") {
+        colors = colors2;
+        radius = Math.random() * 1.2 + 0.4;
+        ctx.fillText(((textField.value.length > 8) ? "Hi, " : "Welcome, ") + textField.value.charAt(0).toUpperCase() + textField.value.slice(1), ww / 2, wh * 80 / 100); // more to the bottom
     } else {
-        ctx.fillText("Hi. I am Victor", ww / 2, wh / 2);
+        colors = colors1;
+        ctx.fillText("Hi. I am Victor", ww / 2, ww / 15 + 15); //top aligned on font "scale" +offset
     }
 
 
@@ -111,8 +120,9 @@ function initScene() {
 }
 
 function onMouseClick() {
-    radius++;
-    if (radius === 3) {
+    // radius++;
+    radius = Math.random() * 1.2 + 0.4;
+    if (radius > 1.4) {
         radius = 0;
     }
 }
@@ -126,11 +136,27 @@ function render(a) {
 };
 
 
-copy.addEventListener("keyup", initScene);
+// textField.addEventListener("keyup", initScene);
+// textField .addEventListener("keyup", (e) => { if (e.key === "Enter") { initScene() } });
 window.addEventListener("resize", initScene);
-window.addEventListener("mousemove", onMouseMove);
-window.addEventListener("touchmove", onTouchMove);
-window.addEventListener("click", onMouseClick);
-window.addEventListener("touchend", onTouchEnd);
+canvas.addEventListener("mousemove", onMouseMove);
+canvas.addEventListener("click", onMouseClick);
+canvas.addEventListener("touchmove", onTouchMove);
+canvas.addEventListener("touchend", onTouchEnd);
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        textField.value = "";
+        initScene();
+    };
+    textField.focus();
+});
+
+textField.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        textField.blur();
+        initScene()
+    }
+});
+
 initScene();
 requestAnimationFrame(render);
