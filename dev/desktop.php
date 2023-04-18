@@ -175,6 +175,7 @@
    <?php
    $viewport_style = 'height:0;';
    $canvas_style = 'height:100%;';
+
    ?>
 
    <div class="headlines hl1">

@@ -23,7 +23,9 @@ function Particle(x, y) {
         x: x,
         y: y
     };
+
     this.r = Math.random() * Math.floor(ww / 200) + Math.floor(ww / 300); //size of particles rand*smallest + biggest
+
     this.vx = (Math.random() - 0.5) * 20;
     this.vy = (Math.random() - 0.5) * 20;
     this.accX = 0;

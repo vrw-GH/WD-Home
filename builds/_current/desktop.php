@@ -199,6 +199,7 @@
                <li class="navbar-tags">
                   <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport"
                         onclick="{$viewport_style = 'height:100%; background-color:rgba(255,255,255,0.9); scroll:none';$canvas_style = 'height:10;'}">
+
                         <b>•&nbsp;About</b>&emsp;··· About Me
                      </a></span>
                </li>
