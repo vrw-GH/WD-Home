@@ -11,19 +11,15 @@
 
    <meta name="author" content="Victor Wright" />
    <meta name="description"
-      content="The Wright's website is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
    <meta property="og:image" content="https://avatars.githubusercontent.com/u/81757839?v=4" />
    <meta property="og:description"
-      content="The Wright's website is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
    <meta property="og:title" content="The Wright's Desk" />
    <meta name="twitter:title" content="The Wright's Desk" />
 
-   <script src="resources/script.js" defer></script>
-
    <link href="resources/favicon.ico" rel="icon" type="image/x-icon">
-   <link href="resources/style.css" rel="stylesheet">
-   <link href="https://vrw-gh.github.io/vrw-GH" rel="preload" as="document" type="text/html" crossorigin="anonymous"
-      fetchpriority="high" />
+   <link href="https://vrw-gh.github.io/vrw-GH" rel="prefetch" as="document" fetchpriority="high" />
 
    <title><?= $site_title ?></title>
 
@@ -34,6 +30,17 @@
       padding: 0;
       font-family: <?=$font_family ?>;
       color: <?=$font_color ?>;
+   }
+
+   body {
+      height: calc(100vh);
+      background-color: <?=$body_backcolor ?>;
+      background-image: url(<?= $main_background ?>);
+      background-attachment: local;
+      background-repeat: no-repeat;
+      background-size: cover;
+      max-width: calc(100% - 1.5rem);
+      background-position: top;
    }
 
    a {
@@ -50,18 +57,9 @@
    a:hover {
       color: <?=$link_color ?>;
    }
+   </style>
 
-   body {
-      height: 100vh;
-      background-color: <?=$body_backcolor ?>;
-      background-image: url(<?= $main_background ?>);
-      background-attachment: local;
-      background-repeat: no-repeat;
-      background-size: cover;
-      max-width: calc(100% - 1.5rem);
-      background-position: top;
-   }
-
+   <style>
    .headlines {
       z-index: 100;
    }
@@ -97,11 +95,13 @@
    .hl2:focus {
       background-color: <?=$highlight_color ?>;
    }
+   </style>
 
+   <style>
    .row {
       display: flex;
       width: calc(100%);
-      height: calc(90vh - 3rem);
+      height: calc(95vh - 3.3rem);
       margin-left: 0.5rem;
       margin-right: 1.0rem;
       /* border: 1px solid red; */
@@ -134,27 +134,30 @@
    }
 
    .navbar-tags>.dropdown {
-      display: none
+      display: none;
    }
 
-   .navbar-tags>li:focus>.dropdown {
+   .navbar-tags>li:hover>.dropdown {
       display: block;
-      color: <?=$highlight_color ?>;
+      /* color: <?= $highlight_color ?>; */
+      color: blue;
    }
    </style>
 
    <style>
-   iframe[name=viewport] {
+   iframe {
       display: flex;
       z-index: 0;
+      height: 100%;
       width: 100%;
       border: none;
       border-radius: 6px;
-      backdrop-filter: blur(4px);
    }
 
-   iframe[name=viewport]:hover {
-      /* background-color: white; */
+   .transitor {
+      transition-duration: 1.0s;
+      transition-timing-function: ease-in-out;
+      transition-property: all;
    }
    </style>
 
@@ -164,83 +167,79 @@
       justify-content: left;
       width: 100%;
       position: absolute;
-      bottom: 5px;
+      bottom: 0.5rem;
 
    }
    </style>
+   <?php
+   $viewport_style = 'height:100%;';
+   ?>
+
 </head>
 
 <body>
 
-   <?php
-   $viewport_style = 'height:0;';
-   $canvas_style = 'height:100%;';
-
-   ?>
-
    <div class="headlines hl1">
       <?= $site_title ?>
    </div>
+
+   <div>
+      <ul class="headlines hl2 ">
+         <li class="navbar-tags">
+            <span><a href="resources/modules/canvas.php" target="viewport" onclick="{
+                     $viewport_style = 'height:100%;';
+                     }">
+                  <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
+               </a></span>
+            <ul class="dropdown">
+               <li><a href="#me">Me</a></li>
+            </ul>
+            <ul class="dropdown">
+               <li><a href="">Gallery</a></li>
+            </ul>
+         </li>
+         <li class="navbar-tags">
+            <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+                     }">
+                  <b>•&nbsp;About</b>&emsp;··· About Me
+               </a></span>
+         </li>
+         <li class="navbar-tags">
+            <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
+            <span><a href="data:text/html,%3Ch1%20align%3D%22center%22%3EA%20Wonderful%20World!%3C%2Fh1%3E"
+                  target="viewport" type="image/jpg" onclick="{
+                     $viewport_style = 'height:100%; background: center / contain  url(\'https:\/\/picsum.photos/700/900\'); backdrop-filter: blur(3px);'
+                     // viewport.location.reload();
+                     }">
+                  <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
+                  <!-- resources/images/tintin-characters.jpg -->
+                  <b>•&nbsp;Other</b>&emsp;··· Random Picture
+               </a></span>
+         </li>
+      </ul>
+   </div>
+
    <row class="row">
       <column class="col-left">
-         <div>
-            <ul class="headlines hl2 navbar-list ">
-               <li class="navbar-tags">
-                  <span><a href="about:blank" target="viewport"
-                        onclick="{$viewport_style = 'height:0;';$canvas_style = 'height:100;'}">
-                        <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
-                     </a></span>
-                  <ul class="dropdown">
-                     <li><a href="#me">Me</a></li>
-                  </ul>
-                  <ul class="dropdown">
-                     <li><a href="">Gallery</a></li>
-                  </ul>
-               </li>
-               <li class="navbar-tags">
-                  <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport"
-                        onclick="{$viewport_style = 'height:100%; background-color:rgba(255,255,255,0.9); scroll:none';$canvas_style = 'height:10;'}">
-                        <b>•&nbsp;About</b>&emsp;··· About Me
-                     </a></span>
-               </li>
-               <li class="navbar-tags">
-                  <span><a href="resources/images/tintin-characters.jpg" target="viewport" type="image/jpg"
-                        onclick="$viewport_style = 'height:100%;'">
-
-                        <b>•&nbsp;Other</b>&emsp;··· Other Stuff
-                     </a></span>
-               </li>
-            </ul>
-         </div>
-
-
       </column>
       <column class="col-right">
 
-         <iframe name="viewport" src="" frameborder="0" title="viewport" height="0" onLoad="{
-            this.style=$viewport_style;
-            canvas.style='height:20%;';
+         <iframe name="viewport" src="resources/modules/canvas.php" frameborder="0" title="viewport" height="0" onLoad="{
+            this.style = $viewport_style ;
+            this.className='transitor' ;
+            this.removeAttribute('srcdoc2');
+            this.location.reload();
+            this.focus();
             }">
-
+            <!-- this.setAttribute('class','transitor') ; -->
          </iframe>
-
-         <?php
-         if ($viewport_style === 'height:0;') {
-            // if ($canvas_style = 'height:100%;') {
-            echo '<canvas id="canvas" style="$canvas_style">Canvas is not supported in your browser.</canvas>';
-            echo '<input id="text" type="text" value="" placeholder="Type your name" maxlength="12" autofocus="autofocus" />';
-         } else {
-         }
-         ?>
-
-
-
 
       </column>
    </row>
 
    <footer>
-      🤙 <a href="tel:+4917646774278">+49 176 4677 4278</a>
+      📞 <a href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
 
 </body>
