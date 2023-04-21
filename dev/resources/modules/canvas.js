@@ -1,13 +1,13 @@
 var canvas = document.querySelector("#canvas"),
-    ctx = canvas.getContext("2d"),
+    ctx = canvas.getContext("2d", { willReadFrequently: true }),
     particles = [],
     amount = 0,
     mouse = { x: 0, y: 0 },
     // radius = 0.4;
     radius = Math.random() * 1.2 + 0.4;
 
-var ww = canvas.width = window.innerWidth;
-var wh = canvas.height = window.innerHeight;
+var ww = canvas.width = window.innerWidth,
+    wh = canvas.height = window.innerHeight;
 
 var textField = document.querySelector("#text");
 
@@ -65,10 +65,11 @@ Particle.prototype.render = function () {
 }
 
 function onMouseMove(e) {
-    // mouse.x = e.clientX;
-    mouse.x = Math.floor(e.clientX * (1 + (window.innerWidth - canvas.clientWidth) / window.innerWidth) - 45);
+    mouse.x = e.clientX;
+    // mouse.x = Math.floor(e.clientX * (1 + (window.innerWidth - canvas.clientWidth) / window.innerWidth) - 45);
 
-    mouse.y = Math.floor(e.clientY * (1 + (window.innerHeight - canvas.clientHeight) / window.innerHeight) - 90);
+    mouse.y = e.clientY;
+    // mouse.y = Math.floor(e.clientY * (1 + (window.innerHeight - canvas.clientHeight) / window.innerHeight) - 90);
 }
 
 function onTouchMove(e) {
@@ -84,6 +85,7 @@ function onTouchEnd(e) {
 }
 
 function initScene() {
+
     ww = canvas.width = window.innerWidth;
     wh = canvas.height = window.innerHeight;
 
@@ -100,7 +102,6 @@ function initScene() {
         ctx.fillText("Hi. I am Victor", ww / 2, ww / 15 + 15); //top aligned on font "scale" +offset
     }
 
-
     var data = ctx.getImageData(0, 0, ww, wh).data;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "screen";
@@ -114,12 +115,12 @@ function initScene() {
         }
     }
     amount = particles.length;
-
 }
 
 function onMouseClick() {
     // radius++;
-    radius = Math.random() * 1.2 + 0.4;
+    // radius = Math.random() * 1.2 + 0.4;
+    radius = (Math.round((Math.random() * 12 + 4) / 2) / 5); // in-increments of 0.2
     if (radius > 1.4) {
         radius = 0;
     }
@@ -155,6 +156,12 @@ textField.addEventListener('keypress', (e) => {
         initScene()
     }
 });
+textField.addEventListener('blur', (e) => {
+    if (e.value != "") {
+        textField.blur();
+        initScene()
+    }
+}, true);
 
 initScene();
 requestAnimationFrame(render);
