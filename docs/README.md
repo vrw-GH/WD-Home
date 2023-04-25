@@ -2,6 +2,7 @@
 
 ## WrightsDesk Site - root (home page)
 
+![new](Screenshot2.png "Wrights Desk")
 ![screenshot](https://github.com/vrw-GH/assets/raw/main/repo-media/wrightsdesk/Screenshot.png)
 
 ---
