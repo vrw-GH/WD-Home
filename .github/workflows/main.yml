@@ -30,9 +30,9 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ftp.wrightsdesk.com # ${{ secrets.FTP_SERVER }} 
-        username: test # ${{ secrets.FTP_USERNAME }}
-        password: pwd1 # ${{ secrets.FTP_PASSWORD }}
+        server: wrightsdesk.com
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./builds/_current/
         server-dir: public_html/www/WD2/
         log-level: verbose
