@@ -1,26 +1,26 @@
 # Deployment of salesforce-datasync-api at AWS ec2 
+# https://github.com/marketplace/actions/ftp-deploy
 name: Deploy to Server
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     branches: [ "main" ]
 jobs:
-  deployment:
+  server-deploy:
     runs-on: self-hosted
-    environment: production
-    uses: SamKirkland/FTP-Deploy-Action@3.1.1
+    timeout-minutes: 2 # default 360!
     steps:
     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - name: Check out repository code
+      uses: actions/checkout@v3
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
+    - run: echo "🍏 This job's status is ${{ job.status }}."
     # - name: Publish
     #   run: |
     #      copy _current/* ftp.wrightsdesk.com/WD
@@ -34,3 +34,16 @@ jobs:
     #     ftp-server: ${{ secrets.FTP_SERVER }} 
     #     ftp-username: ${{ secrets.FTP_USERNAME }}
     #     ftp-password: ${{ secrets.FTP_PASSWORD }}
+    # local-dir: ./builds/_current
+    # server-dir: public_html/www/WD2
+    # log-level: verbose
+    # dry-run: true
+    # timeout: 10000
+    # exclude: |
+    #       **/.git* # is default
+    #       **/.git*/** # is default
+    #       **/node_modules/** # is default
+    #       **/vw*/**
+    #       **/bak*/**
+
+    
