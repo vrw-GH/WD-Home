@@ -30,11 +30,11 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: wrightsdesk.com
+        server: ftp.wrightsdesk.com
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/
+        server-dir: public_html/www/WD2/ # testing
         log-level: verbose
         dry-run: true
         timeout: 10000
