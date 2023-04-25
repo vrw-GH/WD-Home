@@ -33,7 +33,7 @@ jobs:
         server: ftp.wrightsdesk.com # ${{ secrets.FTP_SERVER }} 
         username: test # ${{ secrets.FTP_USERNAME }}
         password: pwd1 # ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./builds/_current
+        local-dir: ./builds/_current/
         server-dir: public_html/www/WD2
         log-level: verbose
         dry-run: true
