@@ -40,6 +40,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       max-width: calc(100% - 1.5rem);
+      max-height: 100vh;
       background-position: top;
    }
 
@@ -187,7 +188,8 @@
       <ul class="headlines hl2 ">
          <li class="navbar-tags">
             <span><a href="resources/modules/canvas.php" target="viewport" onclick="{
-                     $viewport_style = 'height:100%;';
+                     $viewport_style = 'height:100%;';                     
+                     viewport.focus();
                      }">
                   <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
                </a></span>
@@ -229,9 +231,9 @@
             this.style = $viewport_style ;
             this.className='transitor' ;
             this.removeAttribute('srcdoc2');
-            this.location.reload();
             this.focus();
             }">
+            <!-- this.location.reload(); -->
             <!-- this.setAttribute('class','transitor') ; -->
          </iframe>
 
