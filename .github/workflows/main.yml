@@ -33,8 +33,8 @@ jobs:
         server: ftp.wrightsdesk.com
         protocol: ftps
         port: 22
-        username: ${{secrets.FTP_USR}}
-        password: ${{secrets.FTP_PWD}}
+        username: ${{ secrets.FTP_USR }}
+        password: ${{ secrets.FTP_PWD }}
         local-dir: ./builds/_current/
         server-dir: public_html/www/WD2/ # testing  /www/wrightsdesk
         log-level: verbose
