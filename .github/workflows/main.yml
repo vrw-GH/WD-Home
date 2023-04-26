@@ -17,9 +17,11 @@ jobs:
     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
-    # Get repository code
-    - name: Check out repository code
-      uses: actions/checkout@v3      
+    # Get repository checkout
+    - name: "Checkout"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
     - name: List files in the repository
       run: |
@@ -27,26 +29,35 @@ jobs:
     - run: echo "🖥️ The workflow is now ready to Deploy."
     
     # Deployment
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #- name: FTP-Deploy-Action
+    #  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #  with:
+    #    server: ftp.wrightsdesk.com
+    #    protocol: ftps
+    #    port: 22
+    #    username: ${{ secrets.FTP_USR }}
+    #    password: ${{ secrets.FTP_PWD }}
+    #    local-dir: ./builds/_current/
+    #    server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
+    #    log-level: verbose
+    #    dry-run: true
+    #    # timeout: 30000
+    #    # exclude: |
+    #      # **/.git* # is default
+    #      # **/.git*/** # is default
+    #      # **/node_modules/** # is default          
+    #      # **/bak*/**
+    #      # **/zip*/**
+    #      # **/.bak*
+    #      # **/.zip*
+    - name: FTP/SFTP file deployer
+      uses: milanmk/actions-file-deployer@1.12
       with:
-        server: ftp.wrightsdesk.com
-        protocol: ftps
-        port: 22
-        username: ${{ secrets.FTP_USR }}
-        password: ${{ secrets.FTP_PWD }}
-        local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
-        log-level: verbose
-        dry-run: true
-        # timeout: 30000
-        # exclude: |
-          # **/.git* # is default
-          # **/.git*/** # is default
-          # **/node_modules/** # is default          
-          # **/bak*/**
-          # **/zip*/**
-          # **/.bak*
-          # **/.zip*
+        remote-protocol: "sftp"
+        remote-host: "ftp.wrightsdesk.com"
+        remote-user: ${{ secrets.FTP_USR }}
+        remote-password: ${{ secrets.FTP_PWD }}
+        local-path: "./builds/_current/"
+        remote-path: "www/WD2/"
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
