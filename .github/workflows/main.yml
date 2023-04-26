@@ -57,6 +57,7 @@ jobs:
         remote-host: "ftp.wrightsdesk.com"
         remote-user: ${{ secrets.FTP_USR }}
         remote-password: ${{ secrets.FTP_PWD }}
-        remote-path: "/WD2/www/wrightsdesk.com"
+        local-path: "./builds/_current/"
+        remote-path: "www/WD2/"
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
