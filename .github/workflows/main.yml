@@ -55,8 +55,8 @@ jobs:
       with:
         remote-protocol: "sftp"
         remote-host: "ftp.wrightsdesk.com"
-        remote-user: "ftp@wrightsdesk.com"
-        ssh-private-key: ${{ secrets.FTP_PWD }}
+        remote-user: ${{ secrets.FTP_USR }}
+        remote-password: ${{ secrets.FTP_PWD }}
         remote-path: "/WD2/www/wrightsdesk.com"
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
