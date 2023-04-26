@@ -66,15 +66,15 @@ jobs:
       uses: sand4rt/ftp-deployer@v1.7
       with:
         sftp: true # optional
-        host: ftp.wrightsdesk.com # ${{ secrets.FTP_HOST }} 
+        host:  ${{ secrets.FTP_HOST }}
         port: 22 # optional, default is: 21
         username: ${{ secrets.FTP_USR }} # FTP username
         password: ${{ secrets.FTP_PWD }} # FTP password
-        remote_folder: /www/WD2/ # ${{ secrets.FTP_REMOTE_FOLDER }}
+        remote_folder: ${{ secrets.FTP_DEST }}
         local_folder: ./builds/_current/ # optional, local path, default is: dist
         cleanup: true # optional, remove existing files inside FTP remote folder
         include: '["*","*/**"]' # optional, e.g. '['dist']'
-        exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '['node_modules/**', '.git/**', '*.env']'
+        exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '[".git/**", "*.env"]'
         passive: true # optional
         
     - run: echo "🍏 This job's status is ${{ job.status }}."    
