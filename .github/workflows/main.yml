@@ -73,7 +73,7 @@ jobs:
         remote_folder: /www/WD2/ # ${{ secrets.FTP_REMOTE_FOLDER }}
         local_folder: ./builds/_current/ # optional, local path, default is: dist
         cleanup: true # optional, remove existing files inside FTP remote folder
-        include: '[]' # optional, e.g. '['dist']'
+        include: '["*","*/**"]' # optional, e.g. '['dist']'
         exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '['node_modules/**', '.git/**', '*.env']'
         passive: true # optional
         
