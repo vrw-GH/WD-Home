@@ -9,7 +9,7 @@ jobs:
   server-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 2 # default 360!
+    # timeout-minutes: 2 # default 360!
     steps:
 
       # Pre-run
@@ -31,22 +31,22 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.wrightsdesk.com
-        protocol: ftps
+        protocol: ftp
         port: 22
         username: ${{ secrets.FTP_USR }}
         password: ${{ secrets.FTP_PWD }}
         local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/ # testing  /www/wrightsdesk
+        server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
         log-level: verbose
         dry-run: true
-        timeout: 30000
-        exclude: |
+        # timeout: 30000
+        # exclude: |
           # **/.git* # is default
           # **/.git*/** # is default
           # **/node_modules/** # is default          
-          **/bak*/**
-          **/zip*/**
-          **/.bak*
-          **/.zip*
+          # **/bak*/**
+          # **/zip*/**
+          # **/.bak*
+          # **/.zip*
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
