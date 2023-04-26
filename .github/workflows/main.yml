@@ -9,7 +9,7 @@ jobs:
   server-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 2 # default 360!
+    # timeout-minutes: 2 # default 360!
     steps:
 
       # Pre-run
@@ -23,8 +23,7 @@ jobs:
     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
     - name: List files in the repository
       run: |
-        ls ${{ github.workspace }}
-    - run: echo ${{ secrets.FTP_USERNAME }}
+        ls ${{ github.workspace }}    
     - run: echo "🖥️ The workflow is now ready to Deploy."
     
     # Deployment
@@ -32,22 +31,22 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.wrightsdesk.com
-        protocol: ftp
+        protocol: ftps
         port: 22
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        username: ${{ secrets.FTP_USR }}
+        password: ${{ secrets.FTP_PWD }}
         local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/ # testing  /www/wrightsdesk
+        server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
         log-level: verbose
         dry-run: true
-        timeout: 10000
-        exclude: |
+        # timeout: 30000
+        # exclude: |
           # **/.git* # is default
           # **/.git*/** # is default
           # **/node_modules/** # is default          
-          **/bak*/**
-          **/zip*/**
-          **/.bak*
-          **/.zip*
+          # **/bak*/**
+          # **/zip*/**
+          # **/.bak*
+          # **/.zip*
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
