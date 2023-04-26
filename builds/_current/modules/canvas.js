@@ -1,3 +1,5 @@
+var test = document.getElementById("test");
+
 var canvas = document.querySelector("#canvas"),
     ctx = canvas.getContext("2d", { willReadFrequently: true }),
     particles = [],
@@ -88,6 +90,8 @@ function initScene() {
 
     ww = canvas.width = window.innerWidth;
     wh = canvas.height = window.innerHeight;
+    test.innerHTML = `Win ↔↕: ${ww},${wh} / ${window.outerWidth},${window.outerHeight}`;
+
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -118,12 +122,14 @@ function initScene() {
 }
 
 function onMouseClick() {
-    // radius++;
-    // radius = Math.random() * 1.2 + 0.4;
+
+    // radius++;  // radius = Math.random() * 1.2 + 0.4;
     radius = (Math.round((Math.random() * 12 + 4) / 2) / 5); // in-increments of 0.2
-    if (radius > 1.4) {
-        radius = 0;
+    if (radius > ww / 500) {
+        // if (radius > 1.4) {
+        radius = Math.random() * 0.5;
     }
+    // console.log(ww / 500, radius);
 }
 
 function render(a) {
@@ -140,7 +146,7 @@ function render(a) {
 window.addEventListener("resize", initScene);
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("click", onMouseClick);
-canvas.addEventListener("touchmove", onTouchMove);
+canvas.addEventListener("touchmove", onTouchMove, { passive: true });
 canvas.addEventListener("touchend", onTouchEnd);
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
