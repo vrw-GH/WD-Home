@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once "resources/site_data.php";
+<?php include_once "admin/site_data.php";
 ?>
 
 <head>
@@ -18,7 +18,7 @@
    <meta property="og:title" content="The Wright's Desk" />
    <meta name="twitter:title" content="The Wright's Desk" />
 
-   <link href="resources/favicon.ico" rel="icon" type="image/x-icon">
+   <link href="resources/images/vw-favicon.png" rel="icon" type="image/png"> <!-- image/x-icon -->
    <link href="https://vrw-gh.github.io/vrw-GH" rel="prefetch" as="document" fetchpriority="high" />
 
    <title><?= $site_title ?></title>
@@ -173,7 +173,7 @@
    }
    </style>
    <?php
-   $viewport_style = 'height:100%;';
+   $viewport_style = 'height:100%; border: 1px solid blue';
    ?>
 
 </head>
@@ -187,8 +187,8 @@
    <div>
       <ul class="headlines hl2 ">
          <li class="navbar-tags">
-            <span><a href="resources/modules/canvas.php" target="viewport" onclick="{
-                     $viewport_style = 'height:100%;';                     
+            <span><a href="modules/canvas.php" target="viewport" onclick="{
+                     $viewport_style = 'height:100%;';                                        
                      viewport.focus();
                      }">
                   <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
@@ -203,6 +203,8 @@
          <li class="navbar-tags">
             <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+                     viewport.location.reload();
+                     // viewport.focus();
                      }">
                   <b>•&nbsp;About</b>&emsp;··· About Me
                </a></span>
@@ -211,8 +213,9 @@
             <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
             <span><a href="data:text/html,%3Ch1%20align%3D%22center%22%3EA%20Wonderful%20World!%3C%2Fh1%3E"
                   target="viewport" type="image/jpg" onclick="{
-                     $viewport_style = 'height:100%; background: center / contain  url(\'https:\/\/picsum.photos/700/900\'); backdrop-filter: blur(3px);'
-                     // viewport.location.reload();
+                      $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: 70%, 40%; backdrop-filter: blur(3px);';
+                     viewport.location.reload();
+                     // viewport.focus();
                      }">
                   <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                   <!-- resources/images/tintin-characters.jpg -->
@@ -227,14 +230,14 @@
       </column>
       <column class="col-right">
 
-         <iframe name="viewport" src="resources/modules/canvas.php" frameborder="0" title="viewport" height="0" onLoad="{
+         <iframe name="viewport" src="modules/canvas.php" frameborder="0" title="viewport" height="0" onLoad="{
             this.style = $viewport_style ;
             this.className='transitor' ;
             this.removeAttribute('srcdoc2');
-            this.focus();
+            
             }">
-            <!-- this.location.reload(); -->
-            <!-- this.setAttribute('class','transitor') ; -->
+            <!-- this.style = '<?= $viewport_style ?>' ; -->
+            <!-- this.focus(); -->
          </iframe>
 
       </column>

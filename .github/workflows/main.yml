@@ -24,6 +24,7 @@ jobs:
     - name: List files in the repository
       run: |
         ls ${{ github.workspace }}
+    - run: echo ${{ secrets.FTP_USERNAME }}
     - run: echo "🖥️ The workflow is now ready to Deploy."
     
     # Deployment
@@ -36,7 +37,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/ # testing
+        server-dir: public_html/www/WD2/ # testing  /www/wrightsdesk
         log-level: verbose
         dry-run: true
         timeout: 10000
