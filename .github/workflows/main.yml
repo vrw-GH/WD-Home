@@ -31,7 +31,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.wrightsdesk.com
-        protocol: ftp
+        protocol: ftps
         port: 22
         username: ${{secrets.FTP_USR}}
         password: ${{secrets.FTP_PWD}}
@@ -39,7 +39,7 @@ jobs:
         server-dir: public_html/www/WD2/ # testing  /www/wrightsdesk
         log-level: verbose
         dry-run: true
-        timeout: 10000
+        timeout: 30000
         exclude: |
           # **/.git* # is default
           # **/.git*/** # is default
