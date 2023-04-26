@@ -27,26 +27,34 @@ jobs:
     - run: echo "🖥️ The workflow is now ready to Deploy."
     
     # Deployment
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #- name: FTP-Deploy-Action
+    #  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #  with:
+    #    server: ftp.wrightsdesk.com
+    #    protocol: ftps
+    #    port: 22
+    #    username: ${{ secrets.FTP_USR }}
+    #    password: ${{ secrets.FTP_PWD }}
+    #    local-dir: ./builds/_current/
+    #    server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
+    #    log-level: verbose
+    #    dry-run: true
+    #    # timeout: 30000
+    #    # exclude: |
+    #      # **/.git* # is default
+    #      # **/.git*/** # is default
+    #      # **/node_modules/** # is default          
+    #      # **/bak*/**
+    #      # **/zip*/**
+    #      # **/.bak*
+    #      # **/.zip*
+    - name: FTP/SFTP file deployer
+      uses: milanmk/actions-file-deployer@1.12
       with:
-        server: ftp.wrightsdesk.com
-        protocol: ftps
-        port: 22
-        username: ${{ secrets.FTP_USR }}
-        password: ${{ secrets.FTP_PWD }}
-        local-dir: ./builds/_current/
-        server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
-        log-level: verbose
-        dry-run: true
-        # timeout: 30000
-        # exclude: |
-          # **/.git* # is default
-          # **/.git*/** # is default
-          # **/node_modules/** # is default          
-          # **/bak*/**
-          # **/zip*/**
-          # **/.bak*
-          # **/.zip*
+        remote-protocol: "sftp"
+        remote-host: "ftp.wrightsdesk.com"
+        remote-user: "ftp@wrightsdesk.com"
+        ssh-private-key: ${{ secrets.FTP_PWD }}
+        remote-path: "/WD2/www/wrightsdesk.com"
     - run: echo "🍏 This job's status is ${{ job.status }}."    
       
