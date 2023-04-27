@@ -4,69 +4,44 @@ name: Deploy to Server
 run-name: ${{ github.actor }} is Publishing Site 🚀
 on:
   push:
-    branches: [ "main" ]
-    paths: ./builds/_current/
-
-    workflow_dispatch: # Allows run manually
+    branches:
+      - 'main/**'
+    paths:
+      - './builds/_current/**'
+  workflow_dispatch: # Allows run manually
     
 jobs:
-  server-deploy:
-    name: 🎉 Deploy
+  runner:    
+    name: "🕐 Runner"
     runs-on: ubuntu-latest
-    # timeout-minutes: 2 # default 360!
+    # timeout-minutes: 1 # default 360!
     steps:
-
-      # Pre-run
-    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
-    # Get repository checkout
+    - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    
+  checkout:
+    name: "🕑 Check-out"
+    runs-on: ubuntu-latest
+    needs: runner
+    steps:
     - name: "Checkout"
       uses: actions/checkout@v3
       with:
+        paths: ./builds/_current/
         fetch-depth: 0
-    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-    - name: List files in the repository
+    - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+    - name: List files
       run: |
         ls ${{ github.workspace }}    
-    - run: echo "🖥️ The workflow is now ready to Deploy."
-    
-    # Deployment
-    #- name: FTP-Deploy-Action
-    #  uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-    #  with:
-    #    server: ftp.wrightsdesk.com
-    #    protocol: ftps
-    #    port: 22
-    #    username: ${{ secrets.FTP_USR }}
-    #    password: ${{ secrets.FTP_PWD }}
-    #    local-dir: ./builds/_current/
-    #    server-dir: public_html/www/WD2/   # testing  /www/wrightsdesk
-    #    log-level: verbose
-    #    dry-run: true
-    #    # timeout: 30000
-    #    # exclude: |
-    #      # **/.git* # is default
-    #      # **/.git*/** # is default
-    #      # **/node_modules/** # is default          
-    #      # **/bak*/**
-    #      # **/zip*/**
-    #      # **/.bak*
-    #      # **/.zip*
-    
-    #- name: FTP/SFTP file deployer
-    #  uses: milanmk/actions-file-deployer@1.12
-    #  with:
-    #    remote-protocol: "sftp"
-    #    remote-host: "ftp.wrightsdesk.com"
-    #    remote-user: ${{ secrets.FTP_USR }}
-    #    remote-password: ${{ secrets.FTP_PWD }}
-    #    local-path: "./builds/_current/"
-    #    remote-path: "wrightsdesk.com/www/WD2/"
-    #    debug: true
-        
-    - name: FTP Deployer
+    - run: echo "The workflow is now ready to Deploy."
+  
+  deploy:
+    name: "🕒 FTP Deploy"
+    runs-on: ubuntu-latest
+    needs: checkout
+    steps:
+    - name: "ftp-deployer"
       uses: sand4rt/ftp-deployer@v1.7
       with:
         sftp: true # optional
@@ -80,6 +55,10 @@ jobs:
         include: '["*","*/**"]' # optional, e.g. '['dist']'
         exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '[".git/**", "*.env"]'
         passive: true # optional
-        
-    - run: echo "🍏 This job's status is ${{ job.status }}."    
+
+  finish:
+    name: "🤞 Finish"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job's status is ${{ job.status }}."
       
