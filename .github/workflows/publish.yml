@@ -1,0 +1,51 @@
+name: Publish to Server
+run-name: ${{ github.actor }} is Publishing Site 🚀
+on:
+  push:
+    branches:
+      - 'main/**'
+    paths:
+      - "builds/_current/**"
+      
+  workflow_dispatch: # Allows run manually
+    
+jobs:
+  # Deploy to Web Host
+  deploy:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    timeout-minutes: 1 # default 360!
+    
+    steps:
+    - run: |
+        echo "The job was automatically triggered by a ${{ github.event_name }} event."
+        echo echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+        echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    
+    - name: "🕐 Check-out"  # ---------------------------------------------
+      uses: actions/checkout@v3
+      with:        
+        fetch-depth: 0    
+    - run: |
+        echo "The ${{ github.repository }} repository has been cloned to the runner."
+        ls ${{ github.workspace }}    
+        echo "The workflow is now ready to Deploy."
+  
+    - name: "🕑 FTP Deploy" # ---------------------------------------------
+      uses: sand4rt/ftp-deployer@v1.7
+      with:
+        sftp: true # optional
+        host:  ${{ secrets.FTP_HOST }}
+        port: 22 # optional, default is: 21
+        username: ${{ secrets.FTP_USR }} # FTP username
+        password: ${{ secrets.FTP_PWD }} # FTP password
+        remote_folder: ${{ secrets.FTP_DEST }}
+        local_folder: ./builds/_current/ # optional, local path, default is: dist
+        cleanup: true # optional, remove existing files inside FTP remote folder
+        include: '["*","*/**"]' # optional, e.g. '['dist']'
+        exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '[".git/**", "*.env"]'
+        passive: true # optional
+
+    - name: "🤞 Finish" # ---------------------------------------------
+      run: echo "This job's status is ${{ job.status }}."
+      
