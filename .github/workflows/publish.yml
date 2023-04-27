@@ -1,4 +1,4 @@
-name: Deploy to Server
+name: Publish to Server
 run-name: ${{ github.actor }} is Publishing Site 🚀
 on:
   push:
@@ -16,14 +16,12 @@ jobs:
     timeout-minutes: 1 # default 360!
     
     steps:
-    
-    #- name: "🕐 Start"
     - run: |
         echo "The job was automatically triggered by a ${{ github.event_name }} event."
         echo echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
         echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     
-    - name: "🕑 Check-out"  # ---------------------------------------------
+    - name: "🕐 Check-out"  # ---------------------------------------------
       uses: actions/checkout@v3
       with:        
         fetch-depth: 0    
@@ -32,7 +30,7 @@ jobs:
         ls ${{ github.workspace }}    
         echo "The workflow is now ready to Deploy."
   
-    - name: "🕒 FTP Deploy" # ---------------------------------------------
+    - name: "🕑 FTP Deploy" # ---------------------------------------------
       uses: sand4rt/ftp-deployer@v1.7
       with:
         sftp: true # optional
