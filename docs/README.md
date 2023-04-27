@@ -10,7 +10,7 @@
 Versions:
   *Live Site: <a href="http://www.wrightsdesk.com">wrightsdesk.com</a>
   *Beta:      <a href="https://github.com/vrw-GH/WD-Home/tree/main/builds/_current">WD-Home/builds/_current</a>
-  *Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/dev1">WD-Home/dev</a>  
+  *Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/main/dev">WD-Home/dev</a>  
 </pre>
 
 Developer:   Victor Wright
