@@ -11,37 +11,30 @@ on:
   workflow_dispatch: # Allows run manually
     
 jobs:
-  runner:    
-    name: "🕐 Runner"
-    runs-on: ubuntu-latest
-    # timeout-minutes: 1 # default 360!
-    steps:
-    - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-    - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-    - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-    
-  checkout:
-    name: "🕑 Check-out"
-    runs-on: ubuntu-latest
-    needs: runner
-    steps:
-    - name: "Checkout"
-      uses: actions/checkout@v3
-      with:
-        paths: ./builds/_current/
-        fetch-depth: 0
-    - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-    - name: List files
-      run: |
-        ls ${{ github.workspace }}    
-    - run: echo "The workflow is now ready to Deploy."
   
   deploy:
-    name: "🕒 FTP Deploy"
+    name: "Deploy"
     runs-on: ubuntu-latest
-    needs: checkout
+    timeout-minutes: 1 # default 360!
+    
     steps:
-    - name: "ftp-deployer"
+    
+    - name: "🕐 Start"
+    - run: |
+        echo "The job was automatically triggered by a ${{ github.event_name }} event."
+        echo echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+        echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    
+    - name: "🕑 Check-out"  # ---------------------------------------------
+      uses: actions/checkout@v3
+      with:        
+        fetch-depth: 0    
+    - run: |
+        echo "The ${{ github.repository }} repository has been cloned to the runner."
+        ls ${{ github.workspace }}    
+        echo "The workflow is now ready to Deploy."
+  
+    - name: "🕒 FTP Deploy" # ---------------------------------------------
       uses: sand4rt/ftp-deployer@v1.7
       with:
         sftp: true # optional
@@ -56,9 +49,6 @@ jobs:
         exclude: '["*.bak","*.zip",".git*",".git/**"]' # optional, e.g. '[".git/**", "*.env"]'
         passive: true # optional
 
-  finish:
-    name: "🤞 Finish"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This job's status is ${{ job.status }}."
+    - name: "🤞 Finish" # ---------------------------------------------
+      run: echo "This job's status is ${{ job.status }}."
       
