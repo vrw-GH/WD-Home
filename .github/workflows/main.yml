@@ -13,11 +13,11 @@ jobs:
   deploy:
     name: "Deploy"
     runs-on: ubuntu-latest
-    # timeout-minutes: 1 # default 360!
+    timeout-minutes: 1 # default 360!
     
     steps:
     
-    - name: "🕐 Start"
+    #- name: "🕐 Start"
     - run: |
         echo "The job was automatically triggered by a ${{ github.event_name }} event."
         echo echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
