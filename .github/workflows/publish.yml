@@ -5,7 +5,7 @@ on:
     branches:
       - 'main/**'
     paths:
-      - "builds/_current/**"
+      - "builds/_current"
       
   workflow_dispatch: # Allows run manually
     
