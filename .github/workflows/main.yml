@@ -1,5 +1,3 @@
-# Deployment of salesforce-datasync-api at AWS ec2 
-# https://github.com/marketplace/actions/ftp-deploy
 name: Deploy to Server
 run-name: ${{ github.actor }} is Publishing Site 🚀
 on:
