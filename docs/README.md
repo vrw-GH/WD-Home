@@ -13,7 +13,7 @@ Versions:
   *Live Site: <a href="http://www.wrightsdesk.com">wrightsdesk.com</a>
 
 Developer:   Victor Wright
-Client:      .self.
+Client:      self
 Date:        28 Mar 2023
 GH Page:     <a href="https://vrw-gh.github.io/WD-Home/">vrw-gh.github.io/WD-Home</a>
 </pre>
