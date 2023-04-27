@@ -5,6 +5,10 @@ run-name: ${{ github.actor }} is Publishing Site 🚀
 on:
   push:
     branches: [ "main" ]
+    paths: ./builds/_current/
+
+    workflow_dispatch: # Allows run manually
+    
 jobs:
   server-deploy:
     name: 🎉 Deploy
