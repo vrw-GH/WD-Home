@@ -3,9 +3,9 @@ run-name: ${{ github.actor }} is Publishing Site 🚀
 on:
   push:
     branches:
-      - 'main/**'
+      - 'main'
     paths:
-      - "builds/_current**"
+      - "builds/_current/**"
       
   workflow_dispatch: # Allows run manually
     
