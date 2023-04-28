@@ -192,7 +192,7 @@
                      $viewport_style = 'height:100%;';                                        
                      viewport.focus();
                      }">
-                  <b>≡&nbsp;Home</b>&emsp;··· The Wright's Digital Workshop
+                  <b>≡&nbsp;Home</b>&emsp;··· My Digital Workshop
                </a></span>
             <ul class="dropdown">
                <li><a href="#me">Me</a></li>

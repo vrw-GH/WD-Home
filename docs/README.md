@@ -2,15 +2,15 @@
 
 ## WrightsDesk Site - root (home page)
 
-![screenshot](https://github.com/vrw-GH/assets/raw/main/repo-media/wrightsdesk/Screenshot.png "screenshot")
+[<center><img src="https://github.com/vrw-GH/assets/raw/main/repo-media/wrightsdesk/Screenshot.png" alt="screenshot" title="visit wrightsdesk.com"></center>](http://wrightsdesk.com)
 
 ---
 
 <pre>
 Versions:
-  • Live Site: <a href="http://www.wrightsdesk.com">wrightsdesk.com</a>
-  • Beta:      <a href="https://github.com/vrw-GH/WD-Home/tree/main/builds/_current">WD-Home/builds/_current</a>
-  • Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/main/dev">WD-Home/dev</a>  
+  • Live Site: <a href="http://www.wrightsdesk.com" target="_blank">(live) wrightsdesk.com</a>
+  • Beta:      <a href="https://github.com/vrw-GH/WD-Home/tree/main/builds/_beta">(GitHub) WD-Home/builds/_beta</a>
+  • Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/main/dev">(GitHub) WD-Home/dev</a>  
 </pre>
 
 * Developer:   Victor Wright
