@@ -21,7 +21,8 @@
    <link href="resources/images/vw-favicon.png" rel="icon" type="image/png"> <!-- image/x-icon -->
    <link href="https://vrw-gh.github.io/vrw-GH" rel="prefetch" as="document" fetchpriority="high" />
 
-   <title><?= $site_title ?></title>
+   <title><?= $site_title ?>
+   </title>
 
    <style>
    * {
@@ -33,21 +34,24 @@
    }
 
    body {
-      height: calc(100vh);
+      height: calc(99vh - 4rem);
       background-color: <?=$body_backcolor ?>;
       background-image: url(<?= $main_background ?>);
       background-attachment: local;
       background-repeat: no-repeat;
       background-size: cover;
-      max-width: calc(100% - 1.5rem);
-      max-height: 100vh;
+      max-width: calc(100% - 1rem);
       background-position: top;
+      /* border: 1px solid red; */
    }
 
    a {
       text-decoration: none;
-      background: linear-gradient(90deg, transparent, <?=$body_backcolor ?>, <?=$body_backcolor ?>);
+      background: linear-gradient(90deg, transparent, transparent, <?=$body_backcolor ?>, <?=$body_backcolor ?>);
+      backdrop-filter: blur(10px);
       border: 0px solid transparent;
+      border-radius: 4px 0.4rem 0.4rem 4px;
+      padding-right: 3px;
    }
 
    a:focus {
@@ -79,7 +83,7 @@
    .hl2 {
       padding-left: min(0.5rem, 1%);
       cursor: pointer;
-      width: 0.66em;
+      width: 1rem;
       overflow: hidden;
       white-space: nowrap;
       z-index: 100;
@@ -93,6 +97,12 @@
       white-space: normal;
    }
 
+   .hl2:hover>.navbar-tags>.dropdown {
+      display: block;
+      color: <?=$highlight_color ?>;
+      /* color: blue; */
+   }
+
    .hl2:focus {
       background-color: <?=$highlight_color ?>;
    }
@@ -102,7 +112,7 @@
    .row {
       display: flex;
       width: calc(100%);
-      height: calc(95vh - 3.3rem);
+      height: calc(99% - 1.5rem);
       margin-left: 0.5rem;
       margin-right: 1.0rem;
       /* border: 1px solid red; */
@@ -132,18 +142,22 @@
       padding-top: 3px;
       margin-bottom: 5px;
       margin-left: 0;
-
    }
 
    .navbar-tags>.dropdown {
       display: none;
+      list-style-position: inside;
+      list-style-type: none;
+      padding-top: 3px;
+      margin-bottom: 5px;
+      /* margin-left: 0; */
+      margin-left: 1rem;
    }
 
-   .navbar-tags>li:hover>.dropdown {
-      display: block;
-      /* color: <?= $highlight_color ?>; */
-      color: blue;
-   }
+   /* .navbar-tags:hover>.dropdown {
+         display: block;
+         color: <?= $highlight_color ?>;
+      } */
    </style>
 
    <style>
@@ -169,10 +183,16 @@
       justify-content: left;
       width: 100%;
       position: absolute;
-      bottom: 0.5rem;
-
+      bottom: 0.4rem;
    }
+
+   /* @media (width < 420px) and (hover) {
+         footer {
+            bottom: 3rem;
+         }
+      } */
    </style>
+
    <?php
    $viewport_style = 'height:100%; border: 1px solid blue';
    ?>
@@ -189,39 +209,58 @@
       <ul class="headlines hl2 ">
          <li class="navbar-tags">
             <span><a href="modules/canvas.php" target="viewport" onclick="{
-                     $viewport_style = 'height:100%;';                                        
+                     $viewport_style = 'height:100%; background:none';
                      viewport.focus();
                      }">
-                  <b>≡&nbsp;Home</b>&emsp;··· My Digital Workshop
+                  <b>≡&nbsp;&nbsp;Home</b>&emsp;··· My Digital Workshop
                </a></span>
-            <ul class="dropdown">
-               <li><a href="#me">Me</a></li>
-            </ul>
-            <ul class="dropdown">
-               <li><a href="">Gallery</a></li>
-            </ul>
          </li>
          <li class="navbar-tags">
-            <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
+            <!-- <span><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      viewport.location.reload();
+                     // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
                      // viewport.focus();
                      }">
                   <b>•&nbsp;About</b>&emsp;··· About Me
+               </a></span> -->
+            <span><a>
+                  <b>•&nbsp;&nbsp;About</b>
                </a></span>
-         </li>
-         <li class="navbar-tags">
-            <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
-            <span><a href="data:text/html,%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
-                  target="viewport" type="image/jpg" onclick="{
-                      $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; backdrop-filter: blur(3px);';
+
+            <ul class="dropdown">
+               <li><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+                     viewport.location.reload();
+                     // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
+                     // viewport.focus();
+                     }">
+                     <b>○&nbsp;Me</b>&emsp;··· <small>The Developer</small>
+                  </a>
+               </li>
+               <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
+                     target="viewport" type="image/jpg" onclick="{
+                      $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
                      viewport.location.reload();
                      // viewport.focus();
                      }">
-                  <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
-                  <!-- resources/images/tintin-characters.jpg -->
-                  <b>•&nbsp;Other</b>&emsp;··· Random Picture
-               </a></span>
+                     <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
+                     <!-- resources/images/tintin-characters.jpg -->
+                     <b>○&nbsp;Look</b>&emsp;··· <small>A Random Picture</small>
+                  </a></li>
+            </ul>
+         </li>
+         <li class="navbar-tags">
+            <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
+            <a>
+               🖼&nbsp;<b>Gallery</b>&emsp;··· <small><i>Under Development</i></small>
+            </a>
+         </li>
+         <li class="navbar-tags">
+            <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
+            <a>
+               🛵<b>&nbsp;More</b>&emsp;··· <small><i>new stuff goes here</i></small>
+            </a>
          </li>
       </ul>
    </div>
