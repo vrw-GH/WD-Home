@@ -6,6 +6,11 @@
 
 ---
 
+### CI/CD
+
+* Using github Actions to publish github pages
+* Using github Actions to publish "current" build to "live" site
+
 <pre>
 Versions:
   • Live Site: <a href="http://www.wrightsdesk.com" target="_blank">(live) wrightsdesk.com</a>
