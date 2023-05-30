@@ -9,3 +9,4 @@ $font_family = "Verdana, Geneva, Tahoma, sans-serif";
 $font_color = "#ccc";
 $highlight_color = "#fff";
 $link_color = "red";
+$menu_hover_color = "yellow";
