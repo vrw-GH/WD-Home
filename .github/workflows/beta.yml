@@ -39,7 +39,7 @@ jobs:
         port: 22 # optional, default is: 21
         username: ${{ secrets.FTP_USR }} # FTP username
         password: ${{ secrets.FTP_PWD }} # FTP password
-        remote_folder: ${{ secrets.FTP_DEST }}
+        remote_folder: ${{ secrets.FTP_DEST }}/beta
         local_folder: ./builds/_beta/ # optional, local path, default is: dist
         cleanup: true # optional, remove existing files inside FTP remote folder
         include: '["*","*/**"]' # optional, e.g. '['dist']'
