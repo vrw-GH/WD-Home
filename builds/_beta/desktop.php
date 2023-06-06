@@ -17,8 +17,8 @@
    <meta name="twitter:title" content="The Wright's Desk" />
 
    <link href="resources/images/vw-favicon.png" rel="icon" type="image/png"> <!-- image/x-icon -->
-   <link href="https://vrw-gh.github.io/vrw-GH" rel="prefetch" as="document" fetchpriority="high" />
-   <link href="https://github.com/vrw-gh/" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://vrw-gh.github.io/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
 
 
    <title><?= $website['config']['title'] ?>
@@ -115,7 +115,7 @@
          color: <?= $website['config']['highlight_color'] ?>;
       }
 
-      .hl2:focus {
+      .hl2:focus-within {
          background-color:
             <?= $website['config']['highlight_color'] ?>;
       }
@@ -155,7 +155,6 @@
          list-style-position: inside;
          list-style-type: none;
          padding: 3px 3px 3px 0;
-         /* padding-bottom: 3px; */
          margin-bottom: 1px;
          margin-left: 0;
          border-top-right-radius: 1rem;
@@ -164,9 +163,8 @@
       }
 
       .nav-tags:hover,
-      .nav-tags:hover>b {
+      .nav-tags:hover>* {
          color: <?= $website['config']['highlight_color'] ?>;
-         /* color: <?= $website['config']['menu_hover_color'] ?>; */
       }
 
       .nav-tags * * :hover {
@@ -180,7 +178,6 @@
          list-style-type: none;
          padding-top: 3px;
          margin-bottom: 5px;
-         /* margin-left: 0; */
          margin-left: 1rem;
          color: <?= $website['config']['menu_hover_color'] ?>;
       }
@@ -188,7 +185,6 @@
       .nav-tags>.dropdown:hover {
          display: block;
          color: <?= $website['config']['highlight_color'] ?>;
-         /* color: blue; */
       }
 
       /* .nav-tags>.dropdown>li:hover {
@@ -254,17 +250,19 @@
          <li class="nav-tags">
             ≡&nbsp;&nbsp;
             <a href="." onclick="{
+                     this.blur();
                      $viewport_style = 'height:100%; background:none;';
                      window.open('modules/canvas.php','viewport'); // to disable showing the *url
                      viewport.focus();
                      }">
-               <b>Home</b>&emsp;··· My Digital Workshop
+               <b>Home</b>&emsp;··· <small>My Digital Workshop</small>
             </a>
          </li>
          <li class="nav-tags">
             ►<b>&nbsp;&nbsp;About</b>
             <ul class="dropdown">
-               <li><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
+               <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
+                  this.blur();
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
