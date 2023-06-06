@@ -39,7 +39,6 @@
          background-color: <?= $website['config']['body_backcolor'] ?>;
          background-image: url(<?= $website['config']['main_background'] ?>);
          background-attachment: local;
-         /* background-repeat: no-repeat; */
          background-repeat: repeat-y;
          background-size: cover;
          max-width: calc(100% - 1rem);
@@ -71,6 +70,39 @@
       small {
          font-size: max(0.5rem, 0.6em, 1.3vw);
          font-weight: 100;
+      }
+
+      .smaller {
+         font-size: 0.8em;
+         font-weight: 100;
+      }
+   </style>
+
+
+   <style>
+      /* layout */
+      .row {
+         display: flex;
+         width: calc(100%);
+         height: calc(99% - 1.5rem);
+         /* margin-left: 0.5rem; */
+         /* margin-right: 1.0rem; */
+         /* border: 1px solid red; */
+      }
+
+      .col-left {
+         width: max(2rem, 5vw);
+         max-width: 50px;
+         min-width: 1em;
+         background: linear-gradient(90deg, black, transparent);
+         /* border: 1px solid greenyellow; */
+      }
+
+      .col-right {
+         width: calc(100%);
+         background-color: transparent;
+         overflow: auto;
+         /* border: 1px solid yellow; */
       }
    </style>
 
@@ -122,34 +154,6 @@
    </style>
 
    <style>
-      /* layout */
-      .row {
-         display: flex;
-         width: calc(100%);
-         height: calc(99% - 1.5rem);
-         margin-left: 0.5rem;
-         margin-right: 1.0rem;
-         /* border: 1px solid red; */
-      }
-
-      .col-left {
-         width: max(2rem, 5vw);
-         max-width: 50px;
-         min-width: 1em;
-         background-color: transparent;
-         /* border: 1px solid greenyellow; */
-      }
-
-      .col-right {
-         width: calc(100%);
-         /* height: calc(90vh - 3rem);       */
-         background-color: transparent;
-         overflow: auto;
-         /* border: 1px solid yellow; */
-      }
-   </style>
-
-   <style>
       /* navmenus */
       .nav-tags {
          list-style-position: inside;
@@ -186,10 +190,6 @@
          display: block;
          color: <?= $website['config']['highlight_color'] ?>;
       }
-
-      /* .nav-tags>.dropdown>li:hover {
-      backdrop-filter: blur(10px);      
-   }   */
    </style>
 
    <style>
@@ -215,14 +215,15 @@
          justify-content: left;
          width: 100%;
          position: absolute;
-         bottom: 0.4rem;
+         bottom: 2rem;
       }
 
-      /* @media (width < 420px) and (hover) {
+      /* @media (width < 420px) and (hover: hover) { */
+      @media (hover: hover) {
          footer {
-            bottom: 3rem;
+            bottom: 0.4rem;
          }
-      } */
+      }
    </style>
 
    <?php
@@ -255,7 +256,7 @@
                      window.open('modules/canvas.php','viewport'); // to disable showing the *url
                      viewport.focus();
                      }">
-               <b>Home</b>&emsp;··· <small>My Digital Workshop</small>
+               <b>Home</b><i class='smaller'>&emsp;··· My Digital Workshop</i>
             </a>
          </li>
          <li class="nav-tags">
@@ -268,7 +269,8 @@
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
                      // viewport.focus();
                      }">
-                     ○&nbsp;Me&emsp;··· <small>The Developer</small>
+                     ○&nbsp;Me<i class='smaller'>&emsp;··· The Developer</i>
+
                   </a>
                </li>
                <li><a href="https://github.com/vrw-GH/" target="viewport" onclick="{
@@ -276,7 +278,6 @@
                      // viewport.location.reload();
                      }">
                      ○&nbsp;On GitHub
-                     <!-- &emsp;··· <small>GitHub Profile</small> -->
                   </a>
                </li>
             </ul>
@@ -292,7 +293,7 @@
                      }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
-                     ○&nbsp;Look&emsp;··· <small>A Random Picture</small>
+                     ○&nbsp;Look<i class='smaller'>&emsp;··· A Random Picture</i>
                   </a></li>
             </ul>
          </li>
@@ -303,21 +304,21 @@
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;Sanskara&emsp;··· <small>A Landing Page</small>
+                     ○&nbsp;Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
                   </a>
                </li>
                <li><a href="https://sharemyfood.vercel.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;SMF&emsp;··· <small>Share My Food App</small>
+                     ○&nbsp;SMF<i class='smaller'>&emsp;··· Share My Food App</i>
                   </a>
                </li>
                <li><a href="https://vrwgh-myhackernews.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;HN&emsp;··· <small>Hacker News App</small>
+                     ○&nbsp;HN<i class='smaller'>&emsp;··· Hacker News App</i>
                   </a>
                </li>
             </ul>
@@ -330,7 +331,7 @@
                   <?php
                   foreach ($app['info'] as $info) {
                      echo "<p>&emsp;";
-                     echo $info[0] . ": " . "<i>";
+                     echo $info[0] . ": " . "<i class='smaller'>";
                      echo $info[1];
                      echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
                      echo "</i></p>";
