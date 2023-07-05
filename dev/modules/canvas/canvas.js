@@ -14,9 +14,9 @@ var ww = canvas.width = window.innerWidth,
 var textField = document.querySelector("#text");
 
 // var colors = ["#FFAEE7", "#A18704", "#F2FF3B", "#FF8E4D", "#3D00CA"]; //original
-var colors1 = ["#62CBFC", "#454ECF", "#FFDF8F", "#00FFDD", "#05885C"]; //blues
-var colors2 = ["#FFEA2E", "#CF7C45", "#B38D12", "#FF0000", "#880E05"]; //reds
-var colors = colors1;
+var colors1 = ["#62CBFC", "#454ECF", "#FFDF8F", "#00FFDD", "#05885C"], //blues
+    colors2 = ["#FFEA2E", "#CF7C45", "#B38D12", "#FF0000", "#880E05"], //reds
+    colors = colors1; // set initial
 
 function Particle(x, y) {
     this.x = Math.random() * ww;
@@ -25,7 +25,7 @@ function Particle(x, y) {
         x: x,
         y: y
     };
-    this.r = Math.random() * Math.floor(ww / 200) + Math.floor(ww / 300); //size of particles rand*smallest + biggest
+    this.r = Math.random() * Math.floor(ww / 200) + Math.floor(ww / 300); //size of particles rand*smallest + biggest    
     this.vx = (Math.random() - 0.5) * 20;
     this.vy = (Math.random() - 0.5) * 20;
     this.accX = 0;
@@ -100,10 +100,10 @@ function initScene() {
     if (textField.value != "") {
         colors = colors2;
         radius = Math.random() * 1.2 + 0.4;
-        ctx.fillText(((textField.value.length > 8) ? "Hi, " : "Welcome, ") + textField.value.charAt(0).toUpperCase() + textField.value.slice(1), ww / 2, wh * 80 / 100); // more to the bottom
+        ctx.fillText(((textField.value.length > 8) ? "Hi, " : "Welcome, ") + textField.value.charAt(0).toUpperCase() + textField.value.slice(1), ww / 2, wh * 0.9); // more to the bottom
     } else {
         colors = colors1;
-        ctx.fillText("Hi. I am Victor", ww / 2, ww / 15 + 15); //top aligned on font "scale" +offset
+        ctx.fillText("Hi. I am Victor", ww / 2, wh * 0.73); //top aligned on font "scale" +offset - ww / 15 + 15
     }
 
     var data = ctx.getImageData(0, 0, ww, wh).data;
