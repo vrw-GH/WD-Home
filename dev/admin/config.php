@@ -2,12 +2,32 @@
 
 /* app_info */
 $cur_dir = str_replace('_', '', basename(getcwd()));
-$app['info']['version'] = ["Ver", "2.0.3", $cur_dir]; // make sure "beta" is always a subdir because "onclick" will go ../
+$app['info']['version'] = [
+   "Ver: ",
+   "2.0.3", $cur_dir
+]; // make sure "beta" is always a subdir because "onclick" will go ../
 // if ($cur_dir == "beta") $app['info']['version'][2] = "beta";
-$app['info']['name'] = ["App", "Wright's Desk"];
-$app['info']['author'] = ["Author", "Victor Wright"];
-$app['info']['license'] = ["License", "Private. ©Victor R Wright (2023)"];
-$app['info']['contact'] = ["Email", "victor.wright@outlook.de"];
+$app['info']['name'] = [
+   "App: ",
+   "The Wright's Desk"
+];
+$app['info']['description'] = [
+   "",
+   "The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff."
+];
+$app['info']['author'] = [
+   "Author: ",
+   "Victor Wright"
+];
+$app['info']['license'] = [
+   "License: ",
+   "Private. ©Victor R Wright (2023)"
+];
+$app['info']['contact'] = [
+   "Contact: ",
+   "victor.wright@outlook.de / +49 176 4677 4278"
+];
+
 
 /* configuration */
 $website['config']['title'] = "Wright's Desk";
@@ -19,3 +39,7 @@ $website['config']['font_color'] = "#ccc";
 $website['config']['highlight_color'] = "#fff";
 $website['config']['link_color'] = "red";
 $website['config']['menu_hover_color'] = "yellow";
+
+echo '<script language="javascript">';
+echo 'console.log("config loaded")';
+echo '</script>';

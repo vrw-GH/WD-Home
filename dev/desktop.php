@@ -9,22 +9,32 @@
    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <meta name="author" content="Victor Wright" />
-   <meta name="description"
-      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+   <meta name="author" content="<?= $app['info']['author'] ?>" />
+   <meta name="description" content="<?= $app['info']['description'] ?>" />
    <meta property="og:image" content="https://avatars.githubusercontent.com/u/81757839?v=4" />
-   <meta property="og:description"
-      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
-   <meta property="og:title" content="The Wright's Desk" />
-   <meta name="twitter:title" content="The Wright's Desk" />
+   <meta property="og:description" content="<?= $app['info']['description'] ?>" />
+   <meta property="og:title" content="<?= $app['info']['name'] ?>" />
+   <meta name="twitter:title" content="<?= $app['info']['name'] ?>" />
 
-   <link href="resources/images/vw-favicon.png" rel="icon" type="image/png"> <!-- image/x-icon -->
    <link href="https://vrw-gh.github.io/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
    <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
 
+   <script>
+   master = window.parent.document;
+   head = master.getElementsByTagName("head")[0];
 
-   <title><?= $website['config']['title'] ?>
-   </title>
+   favicon = master.createElement("link");
+   favicon.rel = "icon";
+   favicon.type = "image/x-icon";
+   favicon.href = "resources/images/vw-favicon.ico";
+   head.appendChild(favicon);
+
+   title = master.createElement("title");
+   title.text = "<?= $website['config']['title'] ?>";
+   head.appendChild(title);
+
+   $viewport_style = 'height:100%; border: 0px solid blue;';
+   </script>
 
    <style>
    /* generic */
@@ -36,15 +46,19 @@
       color: <?=$website['config']['font_color'] ?>;
    }
 
+   html {
+      /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
+   }
+
    body {
-      height: calc(99vh - 4rem);
       background-color: <?=$website['config']['body_backcolor'] ?>;
       background-image: url(<?= $website['config']['main_background'] ?>);
       background-attachment: local;
       background-repeat: repeat-y;
       background-size: cover;
-      max-width: calc(100% - 1rem);
       background-position: top;
+      height: calc(99vh - 4rem);
+      max-width: calc(100% - 1rem);
       /* border: 1px solid red; */
    }
 
@@ -87,9 +101,6 @@
       display: flex;
       width: calc(100%);
       height: calc(99% - 1.5rem);
-      /* margin-left: 0.5rem; */
-      /* margin-right: 1.0rem; */
-      /* border: 1px solid red; */
    }
 
    .col-left {
@@ -111,12 +122,16 @@
    <style>
    /* specific */
    .headlines {
+      color: <?=$website['config']['highlight_color'] ?>;
       z-index: 100;
+      transition: color linear 0.6s;
    }
 
    .headlines:hover {
-      color: <?=$website['config']['highlight_color'] ?>;
+      color: <?=$website['config']['menu_hover_color'] ?>;
       cursor: default;
+      /* transform: translate3d(0px, 0px, -30px) rotateX(90deg); */
+      transition: color linear 0.2s;
    }
 
    .hl1 {
@@ -169,19 +184,20 @@
    }
 
    .nav-tags:hover,
-   .nav-tags:hover>* {
+   .nav-tags:hover * {
       color: <?=$website['config']['highlight_color'] ?>;
    }
 
-   .nav-tags * * :hover {
+   .nav-tags * *:hover * {
       color: <?=$website['config']['menu_hover_color'] ?>;
-      padding-left: 5px;
+      list-style-type: square;
+      /* padding-left: 5px; */
    }
 
    .nav-tags>.dropdown {
       display: none;
       list-style-position: inside;
-      list-style-type: none;
+      list-style-type: circle;
       padding-top: 3px;
       margin-bottom: 5px;
       margin-left: 1rem;
@@ -191,6 +207,7 @@
    .nav-tags>.dropdown:hover {
       display: block;
       color: <?=$website['config']['highlight_color'] ?>;
+
    }
    </style>
 
@@ -228,10 +245,6 @@
    }
    </style>
 
-   <?php
-   // $viewport_style = 'height:100%; border: 1px solid blue';
-   ?>
-
 </head>
 
 <body>
@@ -256,10 +269,10 @@
             <a href="." onclick="{
                      this.blur();
                      $viewport_style = 'height:100%; background:none;';
-                     window.open('modules/canvas.php','viewport'); // to disable showing the *url
+                     window.open('modules/canvas/canvas.php','viewport'); // to disable showing the *url
                      viewport.focus();
                      }">
-               <b>Home</b><i class='smaller'>&emsp;··· My Digital Workshop</i>
+               <b>Home</b><i class='smaller'>&emsp;··· Welcome to my Digital Workshop</i>
             </a>
          </li>
          <li class="nav-tags">
@@ -272,15 +285,14 @@
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
                      // viewport.focus();
                      }">
-                     ○&nbsp;Me<i class='smaller'>&emsp;··· The Developer</i>
-
+                     Me<i class='smaller'>&emsp;··· The Developer</i>
                   </a>
                </li>
                <li><a href="https://github.com/vrw-GH/" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;On GitHub
+                     On GitHub
                   </a>
                </li>
             </ul>
@@ -297,7 +309,7 @@
                      }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
-                     ○&nbsp;Look<i class='smaller'>&emsp;··· A Random Picture</i>
+                     Look<i class='smaller'>&emsp;··· A Random Picture</i>
                   </a></li>
             </ul>
          </li>
@@ -308,21 +320,21 @@
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
+                     Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
                   </a>
                </li>
                <li><a href="https://sharemyfood.vercel.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;SMF<i class='smaller'>&emsp;··· Share My Food App</i>
+                     SMF<i class='smaller'>&emsp;··· Share My Food App</i>
                   </a>
                </li>
                <li><a href="https://vrwgh-myhackernews.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      }">
-                     ○&nbsp;HN<i class='smaller'>&emsp;··· Hacker News App</i>
+                     HN<i class='smaller'>&emsp;··· Hacker News App</i>
                   </a>
                </li>
             </ul>
@@ -332,15 +344,17 @@
             &emsp14;&iopf;&nbsp;&nbsp;App Info
             <ul class="dropdown">
                <small>
-                  <?php
-                  foreach ($app['info'] as $info) {
-                     echo "<p>&emsp;";
-                     echo $info[0] . ": " . "<i class='smaller'>";
-                     echo $info[1];
-                     echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
-                     echo "</i></p>";
-                  }
-                  ?>
+                  <div style="width:40vw;">
+                     <?php
+                     foreach ($app['info'] as $info) {
+                        echo "<p>&emsp;";
+                        echo $info[0]  . "<i class='smaller'>";
+                        echo $info[1];
+                        echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
+                        echo "</i></p>";
+                     }
+                     ?>
+                  </div>
                </small>
             </ul>
          </li>
@@ -353,8 +367,8 @@
       </column>
 
       <column class="col-right">
-         <iframe name="viewport" class="transitor" src="modules/canvas.php" frameborder="0" title="viewport" height="0"
-            onLoad="{
+         <iframe name="viewport" class="transitor" src="modules/canvas/canvas.php" frameborder="0" title="viewport"
+            height="0" onLoad="{
             this.style = $viewport_style;
             this.removeAttribute('srcdoc2');
             window.history.replaceState(null, null, '');            
