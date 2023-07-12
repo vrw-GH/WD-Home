@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once "admin/config.php";
+<?php
+include_once "admin/config.php";
 ?>
 
 <head>
@@ -29,9 +30,8 @@
    favicon.href = "resources/images/vw-favicon.ico";
    head.appendChild(favicon);
 
-   title = master.createElement("title");
+   title = master.getElementsByTagName("title")[0];
    title.text = "<?= $website['config']['title'] ?>";
-   head.appendChild(title);
 
    $viewport_style = 'height:100%; border: 0px solid blue;';
    </script>
@@ -207,7 +207,6 @@
    .nav-tags>.dropdown:hover {
       display: block;
       color: <?=$website['config']['highlight_color'] ?>;
-
    }
    </style>
 
@@ -249,7 +248,7 @@
 
 <body>
 
-   <span>
+   <header>
       <div class="headlines hl1"
          title="Author: <?= $app['info']['author'][1] . '&#013' . " " . $app['info']['license'][1] ?>">
          <?= $website['config']['title'] ?>&nbsp;
@@ -260,18 +259,18 @@
                               : ''; ?>
                         </small></small></small></small></small></small>
       </div>
-   </span>
+   </header>
 
-   <div>
+   <nav>
       <ul class="headlines hl2">
          <li class="nav-tags">
             ≡&nbsp;&nbsp;
-            <a href="." onclick="{
-                     this.blur();
+            <a href="." onclick="{                  
                      $viewport_style = 'height:100%; background:none;';
                      window.open('modules/canvas/canvas.php','viewport'); // to disable showing the *url
-                     viewport.focus();
-                     }">
+                  this.blur();
+                  // viewport.focus();
+                  }">
                <b>Home</b><i class='smaller'>&emsp;··· Welcome to my Digital Workshop</i>
             </a>
          </li>
@@ -279,19 +278,21 @@
             ►<b>&nbsp;&nbsp;About</b>
             <ul class="dropdown">
                <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
-                  this.blur();
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none; backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
-                     // viewport.focus();
-                     }">
+                     // document.getElementById('phone').focus({focusVisible: true});
+                     // this.blur();                  
+                     // document.getElementById('phone').mouseover();
+                  }">
                      Me<i class='smaller'>&emsp;··· The Developer</i>
                   </a>
                </li>
                <li><a href="https://github.com/vrw-GH/" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      On GitHub
                   </a>
                </li>
@@ -304,9 +305,10 @@
                <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
                      target="viewport" type="image/jpg" onclick="{
                       $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
-                     viewport.location.reload();
-                     // viewport.focus();
-                     }">
+                  viewport.location.reload();
+                  this.blur();
+                  // viewport.focus();
+                  }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
                      Look<i class='smaller'>&emsp;··· A Random Picture</i>
@@ -319,21 +321,24 @@
                <li><a href="https://sanskara-alpha.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
                   </a>
                </li>
                <li><a href="https://sharemyfood.vercel.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      SMF<i class='smaller'>&emsp;··· Share My Food App</i>
                   </a>
                </li>
                <li><a href="https://vrwgh-myhackernews.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      HN<i class='smaller'>&emsp;··· Hacker News App</i>
                   </a>
                </li>
@@ -345,8 +350,7 @@
             <ul class="dropdown">
                <small>
                   <div style="width:40vw;">
-                     <?php
-                     foreach ($app['info'] as $info) {
+                     <?php foreach ($app['info'] as $info) {
                         echo "<p>&emsp;";
                         echo $info[0]  . "<i class='smaller'>";
                         echo $info[1];
@@ -360,7 +364,7 @@
          </li>
 
       </ul>
-   </div>
+   </nav>
 
    <row class="row">
       <column class="col-left">
@@ -371,7 +375,8 @@
             height="0" onLoad="{
             this.style = $viewport_style;
             this.removeAttribute('srcdoc2');
-            window.history.replaceState(null, null, '');            
+            window.history.replaceState(null, null, '');
+            this.load(document.getElementById('phone').focus());            
             }">
             <!-- this.className='transitor'; -->
          </iframe>
@@ -379,7 +384,7 @@
    </row>
 
    <footer>
-      📞 <a href="tel:+4917646774278">+49 176 4677 4278</a>
+      📞 <a id="phone" href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
 
 </body>
