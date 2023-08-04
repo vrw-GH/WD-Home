@@ -74,7 +74,6 @@ $site = ["Wrights Desk", "wrightsdesk.com"];
 <body>
    <span><em>Project:</em> <strong> <?= $site[0] ?></strong>
       &emsp;
-      <!-- <a href="docs/README.md" target="siteView" title="Readme Page">👁️‍🗨️</a> -->
       <a href="data:text/html;charset=utf-8,<html><body>
          <?= htmlspecialchars($readmeMD) ?>
          </body></html>" target="siteView" title="README.md Page">👁️‍🗨️</a>
@@ -85,13 +84,12 @@ $site = ["Wrights Desk", "wrightsdesk.com"];
             echo '<li><a href="' . $dir . '" target="siteView" title="View Folder">' . $dir . '</a></li>';
          };
          ?>
+&emsp;&emsp;
+         <li class="live"><a href="http://www.<?= $site[1] ?>/wrightsdesk/beta" title="Beta" target="siteView" rel="noopener"><small>🌐</small></a></li>
          <li class="live"><a href="http://www.<?= $site[1] ?>" title="<?= $site[1] ?>💡Ctrl-click - new page" target="siteView" rel="noopener"><small>🌎</small></a></li>
-         <li class="live"><a href="http://www.<?= $site[1] ?>/wrightsdesk/beta" title="<?= $site[1] ?> Beta" target="siteView" rel="noopener"><small>🌐</small></a>
-         </li>
-
       </ul>
    </span>
-   <br>
+
 
    <div id="frametitle">Site View</div>
    <iframe name="siteView" src="docs/README.md" loading="lazy" title="siteView" srcdocxx="Loading..." srcdoc='<?= $readmeMD ?>' onload="this.removeAttribute('srcdocxx')" ondblclick="{

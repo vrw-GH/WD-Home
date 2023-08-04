@@ -46,9 +46,9 @@ include_once "admin/config.php";
       color: <?=$website['config']['font_color'] ?>;
    }
 
-   html {
-      /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
-   }
+   /* html { */
+   /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
+   /* } */
 
    body {
       background-color: <?=$website['config']['body_backcolor'] ?>;
@@ -141,6 +141,7 @@ include_once "admin/config.php";
       font-weight: 800;
    }
 
+
    .hl2 {
       padding-left: min(0.5rem, 1%);
       cursor: pointer;
@@ -218,6 +219,7 @@ include_once "admin/config.php";
       width: 100%;
       border: none;
       border-radius: 6px;
+      /* backdrop-filter: blur(2px); */
    }
 
    .transitor {
@@ -278,22 +280,32 @@ include_once "admin/config.php";
             ►<b>&nbsp;&nbsp;About</b>
             <ul class="dropdown">
                <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none; backdrop-filter: blur(15px);';
+                     $viewport_style = 'height:100%; background:none; background-color:rgba(200,200,200,0.9); scroll:none; backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
                      // document.getElementById('phone').focus({focusVisible: true});
                      // this.blur();                  
                      // document.getElementById('phone').mouseover();
                   }">
-                     Me<i class='smaller'>&emsp;··· The Developer</i>
+                     Me<i class='smaller'>&emsp;··· Github Page</i>
                   </a>
                </li>
-               <li><a href="https://github.com/vrw-GH/" target="viewport" onclick="{
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+               <!-- https://vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg -->
+               <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3E%3C%2Fh1%3E" target="viewport"
+                     onclick="{
+                     $viewport_style = 'width:100%; height:130dvw; background: url(\'https:\/\/vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg\') center top no-repeat; background-size: 100% auto;';
                      // viewport.location.reload();
                   this.blur();
                   }">
-                     On GitHub
+                     Curiculum Vitae
+                  </a>
+               </li>
+               <li><a href="https://github.com/vrw-GH" target="_blank" onclick="{
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none; backdrop-filter:blur(15px);';
+                     // viewport.location.reload();
+                  this.blur();
+                  }">
+                     On GitHub<i class='smaller'>&emsp;··· new window!</i>
                   </a>
                </li>
             </ul>
@@ -360,6 +372,9 @@ include_once "admin/config.php";
                      ?>
                   </div>
                </small>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo"><img
+                     src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=5" border="0"
+                     width="88" height="31"></a>
             </ul>
          </li>
 
@@ -376,9 +391,9 @@ include_once "admin/config.php";
             this.style = $viewport_style;
             this.removeAttribute('srcdoc2');
             window.history.replaceState(null, null, '');
-            this.load(document.getElementById('phone').focus());            
+            this.load(this.focus());
             }">
-            <!-- this.className='transitor'; -->
+            <!-- this.load(document.getElementById('viewport').focus()); -->
          </iframe>
       </column>
    </row>
@@ -386,6 +401,7 @@ include_once "admin/config.php";
    <footer>
       📞 <a id="phone" href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
+
 
 </body>
 

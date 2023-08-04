@@ -1,10 +1,10 @@
 <?php
+$cur_dir = str_replace('_', '', basename(getcwd()));
 
 /* app_info */
-$cur_dir = str_replace('_', '', basename(getcwd()));
 $app['info']['version'] = [
    "Ver: ",
-   "2.0.3", $cur_dir
+   "2.0.4", $cur_dir
 ]; // make sure "beta" is always a subdir because "onclick" will go ../
 // if ($cur_dir == "beta") $app['info']['version'][2] = "beta";
 $app['info']['name'] = [
@@ -39,6 +39,8 @@ $website['config']['font_color'] = "#ccc";
 $website['config']['highlight_color'] = "#fff";
 $website['config']['link_color'] = "red";
 $website['config']['menu_hover_color'] = "yellow";
+
+// include_once "../.localDevOnly/dev-definitions.php";
 
 echo '<script language="javascript">';
 echo 'console.log("config loaded")';

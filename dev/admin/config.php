@@ -4,7 +4,7 @@ $cur_dir = str_replace('_', '', basename(getcwd()));
 /* app_info */
 $app['info']['version'] = [
    "Ver: ",
-   "2.0.3", $cur_dir
+   "2.0.4", $cur_dir
 ]; // make sure "beta" is always a subdir because "onclick" will go ../
 // if ($cur_dir == "beta") $app['info']['version'][2] = "beta";
 $app['info']['name'] = [
