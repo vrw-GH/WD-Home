@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once "admin/config.php";
+<?php
+include_once "admin/config.php";
 ?>
 
 <head>
@@ -29,9 +30,8 @@
    favicon.href = "resources/images/vw-favicon.ico";
    head.appendChild(favicon);
 
-   title = master.createElement("title");
+   title = master.getElementsByTagName("title")[0];
    title.text = "<?= $website['config']['title'] ?>";
-   head.appendChild(title);
 
    $viewport_style = 'height:100%; border: 0px solid blue;';
    </script>
@@ -141,6 +141,7 @@
       font-weight: 800;
    }
 
+
    .hl2 {
       padding-left: min(0.5rem, 1%);
       cursor: pointer;
@@ -207,7 +208,6 @@
    .nav-tags>.dropdown:hover {
       display: block;
       color: <?=$website['config']['highlight_color'] ?>;
-
    }
    </style>
 
@@ -219,6 +219,7 @@
       width: 100%;
       border: none;
       border-radius: 6px;
+      /* backdrop-filter: blur(2px); */
    }
 
    .transitor {
@@ -249,7 +250,7 @@
 
 <body>
 
-   <span>
+   <header>
       <div class="headlines hl1"
          title="Author: <?= $app['info']['author'][1] . '&#013' . " " . $app['info']['license'][1] ?>">
          <?= $website['config']['title'] ?>&nbsp;
@@ -260,18 +261,18 @@
                               : ''; ?>
                         </small></small></small></small></small></small>
       </div>
-   </span>
+   </header>
 
-   <div>
+   <nav>
       <ul class="headlines hl2">
          <li class="nav-tags">
             ≡&nbsp;&nbsp;
-            <a href="." onclick="{
-                     this.blur();
+            <a href="." onclick="{                  
                      $viewport_style = 'height:100%; background:none;';
                      window.open('modules/canvas/canvas.php','viewport'); // to disable showing the *url
-                     viewport.focus();
-                     }">
+                  this.blur();
+                  // viewport.focus();
+                  }">
                <b>Home</b><i class='smaller'>&emsp;··· Welcome to my Digital Workshop</i>
             </a>
          </li>
@@ -279,20 +280,32 @@
             ►<b>&nbsp;&nbsp;About</b>
             <ul class="dropdown">
                <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
-                  this.blur();
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+                     $viewport_style = 'height:100%; background:none; background-color:rgba(200,200,200,0.9); scroll:none; backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
-                     // viewport.focus();
-                     }">
-                     Me<i class='smaller'>&emsp;··· The Developer</i>
+                     // document.getElementById('phone').focus({focusVisible: true});
+                     // this.blur();                  
+                     // document.getElementById('phone').mouseover();
+                  }">
+                     Me<i class='smaller'>&emsp;··· Github Page</i>
                   </a>
                </li>
-               <li><a href="https://github.com/vrw-GH/" target="viewport" onclick="{
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+               <!-- https://vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg -->
+               <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3E%3C%2Fh1%3E" target="viewport"
+                     onclick="{
+                     $viewport_style = 'width:100%; height:130dvw; background: url(\'https:\/\/vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg\') center top no-repeat; background-size: 100% auto;';
                      // viewport.location.reload();
-                     }">
-                     On GitHub
+                  this.blur();
+                  }">
+                     Curiculum Vitae
+                  </a>
+               </li>
+               <li><a href="https://github.com/vrw-GH" target="_blank" onclick="{
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none; backdrop-filter:blur(15px);';
+                     // viewport.location.reload();
+                  this.blur();
+                  }">
+                     On GitHub<i class='smaller'>&emsp;··· new window!</i>
                   </a>
                </li>
             </ul>
@@ -304,9 +317,10 @@
                <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
                      target="viewport" type="image/jpg" onclick="{
                       $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
-                     viewport.location.reload();
-                     // viewport.focus();
-                     }">
+                  viewport.location.reload();
+                  this.blur();
+                  // viewport.focus();
+                  }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
                      Look<i class='smaller'>&emsp;··· A Random Picture</i>
@@ -319,21 +333,24 @@
                <li><a href="https://sanskara-alpha.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
                   </a>
                </li>
                <li><a href="https://sharemyfood.vercel.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      SMF<i class='smaller'>&emsp;··· Share My Food App</i>
                   </a>
                </li>
                <li><a href="https://vrwgh-myhackernews.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
+                  this.blur();
+                  }">
                      HN<i class='smaller'>&emsp;··· Hacker News App</i>
                   </a>
                </li>
@@ -345,8 +362,7 @@
             <ul class="dropdown">
                <small>
                   <div style="width:40vw;">
-                     <?php
-                     foreach ($app['info'] as $info) {
+                     <?php foreach ($app['info'] as $info) {
                         echo "<p>&emsp;";
                         echo $info[0]  . "<i class='smaller'>";
                         echo $info[1];
@@ -360,7 +376,7 @@
          </li>
 
       </ul>
-   </div>
+   </nav>
 
    <row class="row">
       <column class="col-left">
@@ -371,16 +387,18 @@
             height="0" onLoad="{
             this.style = $viewport_style;
             this.removeAttribute('srcdoc2');
-            window.history.replaceState(null, null, '');            
+            window.history.replaceState(null, null, '');
+            this.load(this.focus());
             }">
-            <!-- this.className='transitor'; -->
+            <!-- this.load(document.getElementById('viewport').focus()); -->
          </iframe>
       </column>
    </row>
 
    <footer>
-      📞 <a href="tel:+4917646774278">+49 176 4677 4278</a>
+      📞 <a id="phone" href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
+
 
 </body>
 
