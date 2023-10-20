@@ -6,19 +6,21 @@
 
 ---
 
-### CI/CD
+### Features
 
-* Using github Actions to publish github pages
-* Using github Actions to publish "current" build to "live" site
+* CI/CD
+  * Using github Actions to publish github pages
+  * Using github Actions to publish current and beta builds to "live" site
+* Virtual ChatBot (DigiVic) integrated
+
+## Versions
+
+* Current:&emsp;<a href="http://www.wrightsdesk.com" target="_blank" style="color: green;">wrightsdesk.com</a> (live site)
+* Beta:&emsp;&emsp;&nbsp;<a href="http://www.wrightsdesk.com/beta" target="_blank" style="color: red;">wrightsdesk.com/beta</a>
 
 <pre>
-Versions:
-  • Live Site: <a href="http://www.wrightsdesk.com" target="_blank">(live) wrightsdesk.com</a>
-  • Beta:      <a href="https://github.com/vrw-GH/WD-Home/tree/main/builds/_beta">(GitHub) WD-Home/builds/_beta</a>
-  • Dev Build: <a href="https://github.com/vrw-GH/WD-Home/tree/main/dev">(GitHub) WD-Home/dev</a>  
+  • Developer:   Victor Wright
+  • Client:      self
+  • Date:        28 Mar 2023
+  • GH Page:     <a href="https://vrw-gh.github.io/WD-Home/" target="_parent">vrw-gh.github.io/WD-Home</a>
 </pre>
-
-* Developer:   Victor Wright
-* Client:      self
-* Date:        28 Mar 2023
-* GH Page:     <a href="https://vrw-gh.github.io/WD-Home/">vrw-gh.github.io/WD-Home</a>
