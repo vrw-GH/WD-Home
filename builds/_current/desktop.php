@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once "admin/config.php";
+<?php
+include_once "admin/config.php";
 ?>
 
 <head>
@@ -9,20 +10,31 @@
    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <meta name="author" content="Victor Wright" />
-   <meta name="description"
-      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
+   <meta name="author" content="<?= $app['info']['author'] ?>" />
+   <meta name="description" content="<?= $app['info']['description'] ?>" />
    <meta property="og:image" content="https://avatars.githubusercontent.com/u/81757839?v=4" />
-   <meta property="og:description"
-      content="The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff." />
-   <meta property="og:title" content="The Wright's Desk" />
-   <meta name="twitter:title" content="The Wright's Desk" />
+   <meta property="og:description" content="<?= $app['info']['description'] ?>" />
+   <meta property="og:title" content="<?= $app['info']['name'] ?>" />
+   <meta name="twitter:title" content="<?= $app['info']['name'] ?>" />
 
-   <link href="resources/images/vw-favicon.png" rel="icon" type="image/png"> <!-- image/x-icon -->
-   <link href="https://vrw-gh.github.io/vrw-GH" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://vrw-gh.github.io/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
 
-   <title><?= $website['config']['title'] ?>
-   </title>
+   <script>
+   master = window.parent.document;
+   head = master.getElementsByTagName("head")[0];
+
+   favicon = master.createElement("link");
+   favicon.rel = "icon";
+   favicon.type = "image/x-icon";
+   favicon.href = "resources/images/vw-favicon.ico";
+   head.appendChild(favicon);
+
+   title = master.getElementsByTagName("title")[0];
+   title.text = "<?= $website['config']['title'] ?>";
+
+   $viewport_style = 'height:100%; border: 0px solid blue;';
+   </script>
 
    <style>
    /* generic */
@@ -34,16 +46,19 @@
       color: <?=$website['config']['font_color'] ?>;
    }
 
+   /* html { */
+   /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
+   /* } */
+
    body {
-      height: calc(99vh - 4rem);
       background-color: <?=$website['config']['body_backcolor'] ?>;
       background-image: url(<?= $website['config']['main_background'] ?>);
       background-attachment: local;
-      /* background-repeat: no-repeat; */
       background-repeat: repeat-y;
       background-size: cover;
-      max-width: calc(100% - 1rem);
       background-position: top;
+      height: calc(99vh - 4rem);
+      max-width: calc(100% - 1rem);
       /* border: 1px solid red; */
    }
 
@@ -72,17 +87,51 @@
       font-size: max(0.5rem, 0.6em, 1.3vw);
       font-weight: 100;
    }
+
+   .smaller {
+      font-size: 0.8em;
+      font-weight: 100;
+   }
+   </style>
+
+
+   <style>
+   /* layout */
+   .row {
+      display: flex;
+      width: calc(100%);
+      height: calc(99% - 1.5rem);
+   }
+
+   .col-left {
+      width: max(2rem, 5vw);
+      max-width: 50px;
+      min-width: 1em;
+      background: linear-gradient(90deg, black, transparent);
+      /* border: 1px solid greenyellow; */
+   }
+
+   .col-right {
+      width: calc(100%);
+      background-color: transparent;
+      overflow: auto;
+      /* border: 1px solid yellow; */
+   }
    </style>
 
    <style>
    /* specific */
    .headlines {
+      color: <?=$website['config']['highlight_color'] ?>;
       z-index: 100;
+      transition: color linear 0.6s;
    }
 
    .headlines:hover {
-      color: <?=$website['config']['highlight_color'] ?>;
+      color: <?=$website['config']['menu_hover_color'] ?>;
       cursor: default;
+      /* transform: translate3d(0px, 0px, -30px) rotateX(90deg); */
+      transition: color linear 0.2s;
    }
 
    .hl1 {
@@ -91,6 +140,7 @@
       font-size: min(4rem, 4em, 6vw);
       font-weight: 800;
    }
+
 
    .hl2 {
       padding-left: min(0.5rem, 1%);
@@ -115,37 +165,9 @@
       color: <?=$website['config']['highlight_color'] ?>;
    }
 
-   .hl2:focus {
+   .hl2:focus-within {
       background-color:
          <?=$website['config']['highlight_color'] ?>;
-   }
-   </style>
-
-   <style>
-   /* layout */
-   .row {
-      display: flex;
-      width: calc(100%);
-      height: calc(99% - 1.5rem);
-      margin-left: 0.5rem;
-      margin-right: 1.0rem;
-      /* border: 1px solid red; */
-   }
-
-   .col-left {
-      width: max(2rem, 5vw);
-      max-width: 50px;
-      min-width: 1em;
-      background-color: transparent;
-      /* border: 1px solid greenyellow; */
-   }
-
-   .col-right {
-      width: calc(100%);
-      /* height: calc(90vh - 3rem);       */
-      background-color: transparent;
-      overflow: auto;
-      /* border: 1px solid yellow; */
    }
    </style>
 
@@ -155,7 +177,6 @@
       list-style-position: inside;
       list-style-type: none;
       padding: 3px 3px 3px 0;
-      /* padding-bottom: 3px; */
       margin-bottom: 1px;
       margin-left: 0;
       border-top-right-radius: 1rem;
@@ -164,24 +185,22 @@
    }
 
    .nav-tags:hover,
-   .nav-tags>b:hover {
+   .nav-tags:hover * {
       color: <?=$website['config']['highlight_color'] ?>;
-      /* color: <?= $website['config']['menu_hover_color'] ?>; */
    }
 
-   .nav-tags * * :hover {
-      /* color: <?= $website['config']['highlight_color'] ?>; */
+   .nav-tags * *:hover * {
       color: <?=$website['config']['menu_hover_color'] ?>;
-      padding-left: 5px;
+      list-style-type: square;
+      /* padding-left: 5px; */
    }
 
    .nav-tags>.dropdown {
       display: none;
       list-style-position: inside;
-      list-style-type: none;
+      list-style-type: circle;
       padding-top: 3px;
       margin-bottom: 5px;
-      /* margin-left: 0; */
       margin-left: 1rem;
       color: <?=$website['config']['menu_hover_color'] ?>;
    }
@@ -189,12 +208,7 @@
    .nav-tags>.dropdown:hover {
       display: block;
       color: <?=$website['config']['highlight_color'] ?>;
-      /* color: blue; */
    }
-
-   /* .nav-tags>.dropdown>li:hover {
-      backdrop-filter: blur(10px);      
-   }   */
    </style>
 
    <style>
@@ -205,6 +219,7 @@
       width: 100%;
       border: none;
       border-radius: 6px;
+      /* backdrop-filter: blur(2px); */
    }
 
    .transitor {
@@ -220,63 +235,85 @@
       justify-content: left;
       width: 100%;
       position: absolute;
-      bottom: 0.4rem;
+      bottom: 2rem;
    }
 
-   /* @media (width < 420px) and (hover) {
-         footer {
-            bottom: 3rem;
-         }
-      } */
+   /* @media (width < 420px) and (hover: hover) { */
+   @media (hover: hover) {
+      footer {
+         bottom: 0.4rem;
+      }
+   }
    </style>
-
-   <?php
-   // $viewport_style = 'height:100%; border: 1px solid blue';
-   ?>
 
 </head>
 
 <body>
 
-   <span>
+   <script>
+   window.GPTTConfig = {
+      uuid: "34a622f144414a949659a552149ba0ee",
+   }
+   </script>
+   <script src="https://app.gpt-trainer.com/widget-asset.min.js" defer>
+   </script>
+
+   <header>
       <div class="headlines hl1"
-         title="Author: <?= $app['info']['author'][1] . '&#013' . $app['info']['license'][1] ?>">
+         title="Author: <?= $app['info']['author'][1] . '&#013' . " " . $app['info']['license'][1] ?>">
          <?= $website['config']['title'] ?>&nbsp;
          <small><small><small><small><small><small>
-                           <?= $app['info']['version'][1] ?>
+                           <?= $app['info']['version'][1]; ?>
+                           <?= ($app['info']['version'][2] == 'beta') ?
+                              '<a href="../"><i>' . $app['info']['version'][2] . '</i></a>'
+                              : ''; ?>
                         </small></small></small></small></small></small>
       </div>
-   </span>
+   </header>
 
-   <div>
+   <nav>
       <ul class="headlines hl2">
          <li class="nav-tags">
-            <a href="." onclick="{
+            ≡&nbsp;&nbsp;
+            <a href="." onclick="{                  
                      $viewport_style = 'height:100%; background:none;';
-                     window.open('modules/canvas.php','viewport'); // to disable showing the *url
-                     viewport.focus();
-                     }">
-               ≡<b>&nbsp;&nbsp;Home</b>&emsp;··· My Digital Workshop
+                     window.open('modules/canvas/canvas.php','viewport'); // to disable showing the *url
+                  this.blur();
+                  // viewport.focus();
+                  }">
+               <b>Home</b><i class='smaller'>&emsp;··· Welcome to my Digital Workshop</i>
             </a>
          </li>
          <li class="nav-tags">
             ►<b>&nbsp;&nbsp;About</b>
             <ul class="dropdown">
-               <li><a href="https://vrw-gh.github.io/vrw-GH" target="viewport" onclick="{
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+               <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
+                     $viewport_style = 'height:100%; background:none; background-color:rgba(200,200,200,0.9); scroll:none; backdrop-filter: blur(15px);';
                      // viewport.location.reload();
                      // viewport.location.replace('https\:\/\/vrw-gh.github.io\/vrw-GH');
-                     // viewport.focus();
-                     }">
-                     ○&nbsp;Me&emsp;··· <small>The Developer</small>
+                     // document.getElementById('phone').focus({focusVisible: true});
+                     // this.blur();                  
+                     // document.getElementById('phone').mouseover();
+                  }">
+                     Me<i class='smaller'>&emsp;··· Github Page</i>
                   </a>
                </li>
-               <li><a href="https://github.com/vrw-gh" target="viewport" onclick="{
-                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
+               <!-- https://vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg -->
+               <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3E%3C%2Fh1%3E" target="viewport"
+                     onclick="{
+                     $viewport_style = 'width:100%; height:130dvw; background: url(\'https:\/\/vrw-gh.github.io/vrw-GH/resume/cv_vw-en.jpg\') center top no-repeat; background-size: 100% auto;';
                      // viewport.location.reload();
-                     }">
-                     ○&nbsp;On GitHub
-                     <!-- &emsp;··· <small>GitHub Profile</small> -->
+                  this.blur();
+                  }">
+                     Curiculum Vitae
+                  </a>
+               </li>
+               <li><a href="https://github.com/vrw-GH" target="_blank" onclick="{
+                     $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none; backdrop-filter:blur(15px);';
+                     // viewport.location.reload();
+                  this.blur();
+                  }">
+                     On GitHub<i class='smaller'>&emsp;··· new window!</i>
                   </a>
                </li>
             </ul>
@@ -288,75 +325,94 @@
                <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
                      target="viewport" type="image/jpg" onclick="{
                       $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
-                     viewport.location.reload();
-                     // viewport.focus();
-                     }">
+                  viewport.location.reload();
+                  this.blur();
+                  // viewport.focus();
+                  }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
-                     ○&nbsp;Look&emsp;··· <small>A Random Picture</small>
+                     Look<i class='smaller'>&emsp;··· A Random Picture</i>
                   </a></li>
             </ul>
          </li>
          <li class="nav-tags">
-            ►<b>&nbsp;&nbsp;Live Projects</b>
+            ►<b>&nbsp;&nbsp;Online Projects</b>
             <ul class="dropdown">
                <li><a href="https://sanskara-alpha.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
-                     ○&nbsp;Sanskara&emsp;··· <small>A Landing Page</small>
+                  this.blur();
+                  }">
+                     Sanskara<i class='smaller'>&emsp;··· A Landing Page</i>
                   </a>
                </li>
                <li><a href="https://sharemyfood.vercel.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
-                     ○&nbsp;SMF&emsp;··· <small>Share My Food App</small>
+                  this.blur();
+                  }">
+                     SMF<i class='smaller'>&emsp;··· Share My Food App</i>
                   </a>
                </li>
                <li><a href="https://vrwgh-myhackernews.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
                      // viewport.location.reload();
-                     }">
-                     ○&nbsp;HN&emsp;··· <small>Hacker News App</small>
+                  this.blur();
+                  }">
+                     HN<i class='smaller'>&emsp;··· Hacker News App</i>
                   </a>
                </li>
             </ul>
          </li>
 
          <li class="nav-tags">
-            ►&nbsp;&nbsp;App Info
+            &emsp14;&iopf;&nbsp;&nbsp;App Info
             <ul class="dropdown">
-               <small><?php
-                        foreach ($app['info'] as $info) {
-                           echo "<li>&emsp;$info[0]: <i>$info[1]</i></li>";
-                        }
-                        ?></small>
+               <small>
+                  <div style="width:40vw;">
+                     <?php foreach ($app['info'] as $info) {
+                        echo "<p>&emsp;";
+                        echo $info[0]  . "<i class='smaller'>";
+                        echo $info[1];
+                        echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
+                        echo "</i></p>";
+                     }
+                     ?>
+                  </div>
+               </small>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo"><img
+                     src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=5" border="0"
+                     width="88" height="31"></a>
             </ul>
          </li>
 
       </ul>
-   </div>
+   </nav>
 
    <row class="row">
       <column class="col-left">
       </column>
 
       <column class="col-right">
-         <iframe name="viewport" class="transitor" src="modules/canvas.php" frameborder="0" title="viewport" height="0"
-            onLoad="{
+         <iframe name="viewport" class="transitor" src="modules/canvas/canvas.php" frameborder="0" title="viewport"
+            height="0" onLoad="{
             this.style = $viewport_style;
             this.removeAttribute('srcdoc2');
-            window.history.replaceState(null, null, '');            
+            window.history.replaceState(null, null, '');
+            this.load(this.focus());
             }">
-            <!-- this.className='transitor'; -->
+            <!-- this.load(document.getElementById('viewport').focus()); -->
          </iframe>
+         <!-- <iframe src="https://app.gpt-trainer.com/gpt-trainer-widget/34a622f144414a949659a552149ba0ee" width="100%"
+            height="500px" frameborder="0"></iframe> -->
+
       </column>
    </row>
 
    <footer>
-      📞 <a href="tel:+4917646774278">+49 176 4677 4278</a>
+      📞 <a id="phone" href="tel:+4917646774278">+49 176 4677 4278</a>
    </footer>
+
 
 </body>
 
