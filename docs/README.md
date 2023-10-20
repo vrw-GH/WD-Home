@@ -2,7 +2,7 @@
 
 ## WrightsDesk Site - root (home page)
 
-[<center><img src="Screenshot.png" alt="screenshot" title="visit wrightsdesk.com"></center>](http://wrightsdesk.com)
+[<center><img src="https://raw.githubusercontent.com/vrw-GH/assets/main/repo-media/WD-home/Screenshot.png" alt="screenshot" title="visit wrightsdesk.com"></center>](http://wrightsdesk.com)
 
 ---
 

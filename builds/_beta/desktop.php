@@ -46,9 +46,9 @@ include_once "admin/config.php";
       color: <?=$website['config']['font_color'] ?>;
    }
 
-   html {
-      /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
-   }
+   /* html { */
+   /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
+   /* } */
 
    body {
       background-color: <?=$website['config']['body_backcolor'] ?>;
@@ -250,6 +250,14 @@ include_once "admin/config.php";
 
 <body>
 
+   <script>
+   window.GPTTConfig = {
+      uuid: "34a622f144414a949659a552149ba0ee",
+   }
+   </script>
+   <script src="https://app.gpt-trainer.com/widget-asset.min.js" defer>
+   </script>
+
    <header>
       <div class="headlines hl1"
          title="Author: <?= $app['info']['author'][1] . '&#013' . " " . $app['info']['license'][1] ?>">
@@ -372,6 +380,9 @@ include_once "admin/config.php";
                      ?>
                   </div>
                </small>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo"><img
+                     src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=5" border="0"
+                     width="88" height="31"></a>
             </ul>
          </li>
 
@@ -392,6 +403,9 @@ include_once "admin/config.php";
             }">
             <!-- this.load(document.getElementById('viewport').focus()); -->
          </iframe>
+         <!-- <iframe src="https://app.gpt-trainer.com/gpt-trainer-widget/34a622f144414a949659a552149ba0ee" width="100%"
+            height="500px" frameborder="0"></iframe> -->
+
       </column>
    </row>
 
