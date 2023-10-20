@@ -16,7 +16,7 @@
 ## Versions
 
 * Current:&emsp;<a href="http://www.wrightsdesk.com" target="_blank" style="color: green;">wrightsdesk.com</a> (live site)
-* Beta:&emsp;&emsp;&nbsp;<a href="http://www.wrightsdesk.com/beta" target="_blank" style="color: red;">wrightsdesk.com/beta</a>
+* Beta:&emsp;&emsp;&nbsp;<a href="http://www.wrightsdesk.com/wrightsdesk/beta" target="_blank" style="color: red;">wrightsdesk/beta</a>
 
 <pre>
   • Developer:   Victor Wright
