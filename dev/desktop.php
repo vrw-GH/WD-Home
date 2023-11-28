@@ -27,7 +27,7 @@ include_once "admin/config.php";
    favicon = master.createElement("link");
    favicon.rel = "icon";
    favicon.type = "image/x-icon";
-   favicon.href = "resources/images/vw-favicon.ico";
+   favicon.href = "resources/images/favicon-vw.png";
    head.appendChild(favicon);
 
    title = master.getElementsByTagName("title")[0];
@@ -322,6 +322,21 @@ include_once "admin/config.php";
             <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
             ►<b>&nbsp;&nbsp;Gallery</b>&emsp;··· <small><i>Under Development</i></small>
             <ul class="dropdown">
+
+               <!-- 
+         <iframe width="980" height="410" src="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true" frameborder="0"></iframe> -->
+               <li><a href="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true"
+                     target="viewport" type="image/jpg" onclick="{
+                      $viewport_style = 'height:100%; backdrop-filter: blur(3px);';                     
+                  viewport.location.reload();
+                  this.blur();
+                  // viewport.focus();
+                  }">
+                     <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
+                     <!-- resources/images/tintin-characters.jpg -->
+                     NASA - Europa Clipper<i class='smaller'>&emsp;··· Im on Board!</i>
+                  </a></li>
+
                <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
                      target="viewport" type="image/jpg" onclick="{
                       $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
@@ -335,6 +350,7 @@ include_once "admin/config.php";
                   </a></li>
             </ul>
          </li>
+
          <li class="nav-tags">
             ►<b>&nbsp;&nbsp;Online Projects</b>
             <ul class="dropdown">

@@ -32,7 +32,7 @@ $app['info']['contact'] = [
 /* configuration */
 $website['config']['title'] = "Wright's Desk";
 $website['config']['www'] = "www.wrightsdesk.com";
-$website['config']['main_background'] = "resources/images/_92e566b6-5988-4edc-9d50-2fe7019f18cd.jpg";
+$website['config']['main_background'] = "resources/images/lorem.png";
 $website['config']['body_backcolor'] = "#111";
 $website['config']['font_family'] = "Verdana, Geneva, Tahoma, sans-serif";
 $website['config']['font_color'] = "#ccc";
