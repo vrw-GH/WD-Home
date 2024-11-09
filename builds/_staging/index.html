@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link href="https://vrw-gh.github.io/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
+
+   <title>WrightsDesk-Loader</title>
+
+   <style>
+      body {
+         margin: 0;
+         background-color: rbg(5, 5, 15);
+         position: fixed;
+         top: 0;
+         bottom: 0;
+         right: 0;
+         left: 0;
+         /* border: 1px solid greenyellow; */
+      }
+
+      iframe[id=desktop] {
+         width: 100%;
+         height: calc(100dvh - 0px);
+         /* border: 1px solid orange; */
+      }
+
+      @media (width < 420px) and (hover) {
+         iframe[id=desktop] {
+            /* height: calc(100vh - 40px); */
+            /* bottom: 3rem; */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border: 1px solid yellow;
+         }
+      }
+   </style>
+
+</head>
+
+<body>
+   <iframe id="desktop" src="desktop.php" frameborder="0" title="desktop">
+      This page cannot be loaded in your browser!
+   </iframe>
+</body>
+
+</html>
