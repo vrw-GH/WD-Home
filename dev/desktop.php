@@ -21,229 +21,229 @@ include_once "admin/config.php";
    <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
 
    <script>
-   master = window.parent.document;
-   head = master.getElementsByTagName("head")[0];
+      master = window.parent.document;
+      head = master.getElementsByTagName("head")[0];
 
-   favicon = master.createElement("link");
-   favicon.rel = "icon";
-   favicon.type = "image/x-icon";
-   favicon.href = "resources/images/favicon-vw.png";
-   head.appendChild(favicon);
+      favicon = master.createElement("link");
+      favicon.rel = "icon";
+      favicon.type = "image/x-icon";
+      favicon.href = "resources/images/favicon-vw.png";
+      head.appendChild(favicon);
 
-   title = master.getElementsByTagName("title")[0];
-   title.text = "<?= $website['config']['title'] ?>";
+      title = master.getElementsByTagName("title")[0];
+      title.text = "<?= $website['config']['title'] ?>";
 
-   $viewport_style = 'height:100%; border: 0px solid blue;';
+      $viewport_style = 'height:100%; border: 0px solid blue;';
    </script>
 
    <style>
-   /* generic */
-   * {
-      background-color: transparent;
-      margin: 0;
-      padding: 0;
-      font-family: <?=$website['config']['font_family'] ?>;
-      color: <?=$website['config']['font_color'] ?>;
-   }
-
-   /* html { */
-   /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
-   /* } */
-
-   body {
-      background-color: <?=$website['config']['body_backcolor'] ?>;
-      background-image: url(<?= $website['config']['main_background'] ?>);
-      background-attachment: local;
-      background-repeat: repeat-y;
-      background-size: cover;
-      background-position: top;
-      height: calc(99vh - 4rem);
-      max-width: calc(100% - 1rem);
-      /* border: 1px solid red; */
-   }
-
-   a,
-   a>* {
-      text-decoration: none;
-      background: linear-gradient(90deg, transparent, transparent, <?=$website['config']['body_backcolor'] ?>, <?=$website['config']['body_backcolor'] ?>);
-      backdrop-filter: blur(10px);
-      border: 0px solid transparent;
-      border-radius: 4px 0.4rem 0.4rem 4px;
-      padding-right: 3px;
-   }
-
-   a:focus,
-   a>*:focus {
-      background: linear-gradient(90deg, <?=$website['config']['font_color'] ?>, transparent, transparent, <?=$website['config']['body_backcolor'] ?>);
-      color: <?=$website['config']['highlight_color'] ?>;
-   }
-
-   a:hover,
-   a>*:hover {
-      color: <?=$website['config']['link_color'] ?>;
-   }
-
-   small {
-      font-size: max(0.5rem, 0.6em, 1.3vw);
-      font-weight: 100;
-   }
-
-   .smaller {
-      font-size: 0.8em;
-      font-weight: 100;
-   }
-   </style>
-
-
-   <style>
-   /* layout */
-   .row {
-      display: flex;
-      width: calc(100%);
-      height: calc(99% - 1.5rem);
-   }
-
-   .col-left {
-      width: max(2rem, 5vw);
-      max-width: 50px;
-      min-width: 1em;
-      background: linear-gradient(90deg, black, transparent);
-      /* border: 1px solid greenyellow; */
-   }
-
-   .col-right {
-      width: calc(100%);
-      background-color: transparent;
-      overflow: auto;
-      /* border: 1px solid yellow; */
-   }
-   </style>
-
-   <style>
-   /* specific */
-   .headlines {
-      color: <?=$website['config']['highlight_color'] ?>;
-      z-index: 100;
-      transition: color linear 0.6s;
-   }
-
-   .headlines:hover {
-      color: <?=$website['config']['menu_hover_color'] ?>;
-      cursor: default;
-      /* transform: translate3d(0px, 0px, -30px) rotateX(90deg); */
-      transition: color linear 0.2s;
-   }
-
-   .hl1 {
-      padding: 10px 0 8px 1rem;
-      text-shadow: <?=$website['config']['font_color'] ?> 4px 0 10px;
-      font-size: min(4rem, 4em, 6vw);
-      font-weight: 800;
-   }
-
-
-   .hl2 {
-      padding-left: min(0.5rem, 1%);
-      cursor: pointer;
-      width: 1rem;
-      overflow: hidden;
-      white-space: nowrap;
-      z-index: 100;
-      position: absolute;
-   }
-
-   .hl2:hover {
-      color: <?=$website['config']['highlight_color'] ?> !important;
-      width: auto;
-      overflow: visible;
-      white-space: normal;
-      /* backdrop-filter: blur(10px); */
-   }
-
-   .hl2:hover>.nav-tags>.dropdown {
-      display: block;
-      color: <?=$website['config']['highlight_color'] ?>;
-   }
-
-   .hl2:focus-within {
-      background-color:
-         <?=$website['config']['highlight_color'] ?>;
-   }
-   </style>
-
-   <style>
-   /* navmenus */
-   .nav-tags {
-      list-style-position: inside;
-      list-style-type: none;
-      padding: 3px 3px 3px 0;
-      margin-bottom: 1px;
-      margin-left: 0;
-      border-top-right-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-      backdrop-filter: invert(30%);
-   }
-
-   .nav-tags:hover,
-   .nav-tags:hover * {
-      color: <?=$website['config']['highlight_color'] ?>;
-   }
-
-   .nav-tags * *:hover * {
-      color: <?=$website['config']['menu_hover_color'] ?>;
-      list-style-type: square;
-      /* padding-left: 5px; */
-   }
-
-   .nav-tags>.dropdown {
-      display: none;
-      list-style-position: inside;
-      list-style-type: circle;
-      padding-top: 3px;
-      margin-bottom: 5px;
-      margin-left: 1rem;
-      color: <?=$website['config']['menu_hover_color'] ?>;
-   }
-
-   .nav-tags>.dropdown:hover {
-      display: block;
-      color: <?=$website['config']['highlight_color'] ?>;
-   }
-   </style>
-
-   <style>
-   iframe {
-      display: flex;
-      z-index: 0;
-      height: 100%;
-      width: 100%;
-      border: none;
-      border-radius: 6px;
-      /* backdrop-filter: blur(2px); */
-   }
-
-   .transitor {
-      transition-duration: 1.0s;
-      transition-timing-function: ease-in-out;
-      transition-property: all;
-   }
-   </style>
-
-   <style>
-   footer {
-      display: flex;
-      justify-content: left;
-      width: 100%;
-      position: absolute;
-      bottom: 2rem;
-   }
-
-   /* @media (width < 420px) and (hover: hover) { */
-   @media (hover: hover) {
-      footer {
-         bottom: 0.4rem;
+      /* generic */
+      * {
+         background-color: transparent;
+         margin: 0;
+         padding: 0;
+         font-family: <?= $website['config']['font_family'] ?>;
+         color: <?= $website['config']['font_color'] ?>;
       }
-   }
+
+      /* html { */
+      /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
+      /* } */
+
+      body {
+         background-color: <?= $website['config']['body_backcolor'] ?>;
+         background-image: url(<?= $website['config']['main_background'] ?>);
+         background-attachment: local;
+         background-repeat: repeat-y;
+         background-size: cover;
+         background-position: top;
+         height: calc(99vh - 4rem);
+         max-width: calc(100% - 1rem);
+         /* border: 1px solid red; */
+      }
+
+      a,
+      a>* {
+         text-decoration: none;
+         background: linear-gradient(90deg, transparent, transparent, <?= $website['config']['body_backcolor'] ?>, <?= $website['config']['body_backcolor'] ?>);
+         backdrop-filter: blur(10px);
+         border: 0px solid transparent;
+         border-radius: 4px 0.4rem 0.4rem 4px;
+         padding-right: 3px;
+      }
+
+      a:focus,
+      a>*:focus {
+         background: linear-gradient(90deg, <?= $website['config']['font_color'] ?>, transparent, transparent, <?= $website['config']['body_backcolor'] ?>);
+         color: <?= $website['config']['highlight_color'] ?>;
+      }
+
+      a:hover,
+      a>*:hover {
+         color: <?= $website['config']['link_color'] ?>;
+      }
+
+      small {
+         font-size: max(0.5rem, 0.6em, 1.3vw);
+         font-weight: 100;
+      }
+
+      .smaller {
+         font-size: 0.8em;
+         font-weight: 100;
+      }
+   </style>
+
+
+   <style>
+      /* layout */
+      .row {
+         display: flex;
+         width: calc(100%);
+         height: calc(99% - 1.5rem);
+      }
+
+      .col-left {
+         width: max(2rem, 5vw);
+         max-width: 50px;
+         min-width: 1em;
+         background: linear-gradient(90deg, black, transparent);
+         /* border: 1px solid greenyellow; */
+      }
+
+      .col-right {
+         width: calc(100%);
+         background-color: transparent;
+         overflow: auto;
+         /* border: 1px solid yellow; */
+      }
+   </style>
+
+   <style>
+      /* specific */
+      .headlines {
+         color: <?= $website['config']['highlight_color'] ?>;
+         z-index: 100;
+         transition: color linear 0.6s;
+      }
+
+      .headlines:hover {
+         color: <?= $website['config']['menu_hover_color'] ?>;
+         cursor: default;
+         /* transform: translate3d(0px, 0px, -30px) rotateX(90deg); */
+         transition: color linear 0.2s;
+      }
+
+      .hl1 {
+         padding: 10px 0 8px 1rem;
+         text-shadow: <?= $website['config']['font_color'] ?> 4px 0 10px;
+         font-size: min(4rem, 4em, 6vw);
+         font-weight: 800;
+      }
+
+
+      .hl2 {
+         padding-left: min(0.5rem, 1%);
+         cursor: pointer;
+         width: 1rem;
+         overflow: hidden;
+         white-space: nowrap;
+         z-index: 100;
+         position: absolute;
+      }
+
+      .hl2:hover {
+         color: <?= $website['config']['highlight_color'] ?> !important;
+         width: auto;
+         overflow: visible;
+         white-space: normal;
+         /* backdrop-filter: blur(10px); */
+      }
+
+      .hl2:hover>.nav-tags>.dropdown {
+         display: block;
+         color: <?= $website['config']['highlight_color'] ?>;
+      }
+
+      .hl2:focus-within {
+         background-color:
+            <?= $website['config']['highlight_color'] ?>;
+      }
+   </style>
+
+   <style>
+      /* navmenus */
+      .nav-tags {
+         list-style-position: inside;
+         list-style-type: none;
+         padding: 3px 3px 3px 0;
+         margin-bottom: 1px;
+         margin-left: 0;
+         border-top-right-radius: 1rem;
+         border-bottom-right-radius: 1rem;
+         backdrop-filter: invert(30%);
+      }
+
+      .nav-tags:hover,
+      .nav-tags:hover * {
+         color: <?= $website['config']['highlight_color'] ?>;
+      }
+
+      .nav-tags * *:hover * {
+         color: <?= $website['config']['menu_hover_color'] ?>;
+         list-style-type: square;
+         /* padding-left: 5px; */
+      }
+
+      .nav-tags>.dropdown {
+         display: none;
+         list-style-position: inside;
+         list-style-type: circle;
+         padding-top: 3px;
+         margin-bottom: 5px;
+         margin-left: 1rem;
+         color: <?= $website['config']['menu_hover_color'] ?>;
+      }
+
+      .nav-tags>.dropdown:hover {
+         display: block;
+         color: <?= $website['config']['highlight_color'] ?>;
+      }
+   </style>
+
+   <style>
+      iframe {
+         display: flex;
+         z-index: 0;
+         height: 100%;
+         width: 100%;
+         border: none;
+         border-radius: 6px;
+         /* backdrop-filter: blur(2px); */
+      }
+
+      .transitor {
+         transition-duration: 1.0s;
+         transition-timing-function: ease-in-out;
+         transition-property: all;
+      }
+   </style>
+
+   <style>
+      footer {
+         display: flex;
+         justify-content: left;
+         width: 100%;
+         position: absolute;
+         bottom: 2rem;
+      }
+
+      /* @media (width < 420px) and (hover: hover) { */
+      @media (hover: hover) {
+         footer {
+            bottom: 0.4rem;
+         }
+      }
    </style>
 
 </head>
@@ -251,9 +251,9 @@ include_once "admin/config.php";
 <body>
 
    <script>
-   window.GPTTConfig = {
-      uuid: "34a622f144414a949659a552149ba0ee",
-   }
+      window.GPTTConfig = {
+         uuid: "34a622f144414a949659a552149ba0ee",
+      }
    </script>
    <script src="https://app.gpt-trainer.com/widget-asset.min.js" defer>
    </script>
@@ -326,12 +326,12 @@ include_once "admin/config.php";
                <!-- 
          <iframe width="980" height="410" src="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true" frameborder="0"></iframe> -->
                <li><a href="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true"
-                     target="viewport" type="image/jpg" onclick="{
-                      $viewport_style = 'height:100%; backdrop-filter: blur(3px);';                     
-                  viewport.location.reload();
-                  this.blur();
-                  // viewport.focus();
-                  }">
+                     target="viewport" type="image/jpg" loading="eager" onclick="{
+                        $viewport_style = 'height:100%; backdrop-filter: blur(3px);';                     
+                        viewport.location.reload();
+                        this.blur();                     
+                        // viewport.focus();
+                     }">
                      <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
                      <!-- resources/images/tintin-characters.jpg -->
                      NASA - Europa Clipper<i class='smaller'>&emsp;··· Im on Board!</i>
@@ -410,18 +410,14 @@ include_once "admin/config.php";
       </column>
 
       <column class="col-right">
-         <iframe name="viewport" class="transitor" src="modules/canvas/canvas.php" frameborder="0" title="viewport"
-            height="0" onLoad="{
+         <iframe name="viewport" class="transitor" src="modules/canvas/canvas.php" loading="eager" frameborder="0"
+            srcdocxx="" title="viewport" height="0" onLoad="{
             this.style = $viewport_style;
-            this.removeAttribute('srcdoc2');
+            this.removeAttribute('srcdocxx');
             window.history.replaceState(null, null, '');
             this.load(this.focus());
             }">
-            <!-- this.load(document.getElementById('viewport').focus()); -->
          </iframe>
-         <!-- <iframe src="https://app.gpt-trainer.com/gpt-trainer-widget/34a622f144414a949659a552149ba0ee" width="100%"
-            height="500px" frameborder="0"></iframe> -->
-
       </column>
    </row>
 
