@@ -2,7 +2,7 @@
 
 ## WrightsDesk Site - root (home page)
 
-[<center><img src="https://raw.githubusercontent.com/vrw-GH/assets/main/repo-media/WD-home/Screenshot.png" alt="screenshot" title="visit wrightsdesk.com"></center>](http://wrightsdesk.com)
+[<center><img src="https://raw.githubusercontent.com/vrw-GH/assets/main/repo-media/WD-home/Screenshot.png" alt="screenshot" title="visit wrightsdesk.com"></center>](https://wrightsdesk.com/wrightsdesk/index.html)
 
 ---
 
@@ -15,8 +15,8 @@
 
 ## Versions
 
-* Current:&emsp;<a href="http://www.wrightsdesk.com" target="_blank" style="color: green;">wrightsdesk.com</a> (live site)
-* Beta:&emsp;&emsp;&nbsp;<a href="http://www.wrightsdesk.com/wrightsdesk/beta" target="_blank" style="color: red;">wrightsdesk/beta</a>
+* Current:&emsp;<a href="https://wrightsdesk.com/wrightsdesk/index.html" target="_blank" style="color: green;">wrightsdesk.com</a> (live site)
+* Beta:&emsp;&emsp;&nbsp;<a href="https://www.wrightsdesk.com/wrightsdesk/beta" target="_blank" style="color: red;">wrightsdesk/beta</a>
 
 <pre>
   • Developer:   Victor Wright
