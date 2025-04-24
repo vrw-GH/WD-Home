@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include_once "admin/config.php";
+(@include_once "../admin/config.php") ? null : die("Configuration load error.");
 ?>
 
 <head>
@@ -19,6 +19,9 @@ include_once "admin/config.php";
 
    <link href="https://vrw-gh.github.io/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
    <link href="https://github.com/vrw-GH/" rel="prefetch" as="document" fetchpriority="high" />
+   <link href="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true" rel="prefetch" as="document" fetchpriority="high" />
+
+
 
    <script>
       master = window.parent.document;
@@ -46,9 +49,9 @@ include_once "admin/config.php";
          color: <?= $website['config']['font_color'] ?>;
       }
 
-      /* html { */
-      /* backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg); */
-      /* } */
+      html {
+      backdrop-filter: hue-rotate(<?= rand(1, 180) ?>deg);
+      }
 
       body {
          background-color: <?= $website['config']['body_backcolor'] ?>;
@@ -260,24 +263,29 @@ include_once "admin/config.php";
 
    <header>
       <div class="headlines hl1"
-         title="Author: <?= $app['info']['author'][1] . '&#013' . " " . $app['info']['license'][1] ?>">
+         title="App Info:  ◖<?= $app['info']['name'][1];?>◗
+             <?= '&#013 Author: '.$app['info']['author'][1];?>
+             <?= '&#013 © '.$app['info']['license'][1];?>
+             ">
          <?= $website['config']['title'] ?>&nbsp;
-         <small><small><small><small><small><small>
-                           <?= $app['info']['version'][1]; ?>
-                           <?= ($app['info']['version'][2] == 'beta') ?
-                              '<a href="../"><i>' . $app['info']['version'][2] . '</i></a>'
-                              : ''; ?>
-                        </small></small></small></small></small></small>
+         <span style="font-size:1rem;">
+             <?= $app['info']['version'][1]; ?>
+             <?= ($app['info']['version'][2] == 'beta') ?
+             '<a href=".." style="font-size:0.5rem;" target="_top"><i>' . $app['info']['version'][2] . '</i></a>'
+             : ''; ?>
+         </span>
       </div>
    </header>
 
    <nav>
       <ul class="headlines hl2">
          <li class="nav-tags">
+
             ≡&nbsp;&nbsp;
-            <a href="." onclick="{                  
+
+            <a href="" onclick="{                  
                      $viewport_style = 'height:100%; background:none;';
-                     window.open('modules/canvas/canvas.php','viewport'); // to disable showing the *url
+                     window.open($website['config']['components']['canvas'],'viewport'); // to disable showing the *url
                   this.blur();
                   // viewport.focus();
                   }">
@@ -285,7 +293,9 @@ include_once "admin/config.php";
             </a>
          </li>
          <li class="nav-tags">
+
             ►<b>&nbsp;&nbsp;About</b>
+
             <ul class="dropdown">
                <li><a href="https://vrw-gh.github.io/vrw-GH/" target="viewport" onclick="{
                      $viewport_style = 'height:100%; background:none; background-color:rgba(200,200,200,0.9); scroll:none; backdrop-filter: blur(15px);';
@@ -319,12 +329,10 @@ include_once "admin/config.php";
             </ul>
          </li>
          <li class="nav-tags">
-            <!-- data:text/html,%3Ch1%20align%3D%22center%22%3EHello%2C%20World!%3C%2Fh1%3E -->
-            ►<b>&nbsp;&nbsp;Gallery</b>&emsp;··· <small><i>Under Development</i></small>
-            <ul class="dropdown">
 
-               <!-- 
-         <iframe width="980" height="410" src="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true" frameborder="0"></iframe> -->
+            ►<b>&nbsp;&nbsp;Gallery</b>&emsp;··· <small><i>Under Development</i></small>
+
+            <ul class="dropdown">
                <li><a href="https://europa.nasa.gov/message-in-a-bottle/check-in?hash=g4L2H%2BxkdeG0c91TSTTKaa0%3D--EB1KdX75rd8N%2BDgS--RKnsXFIJUmrDVtbfmXjhxQ%3D%3D&embed=true"
                      target="viewport" type="image/jpg" loading="eager" onclick="{
                         $viewport_style = 'height:100%; backdrop-filter: blur(3px);';                     
@@ -332,27 +340,35 @@ include_once "admin/config.php";
                         this.blur();                     
                         // viewport.focus();
                      }">
-                     <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
-                     <!-- resources/images/tintin-characters.jpg -->
                      NASA - Europa Clipper<i class='smaller'>&emsp;··· Im on Board!</i>
                   </a></li>
 
-               <li><a href="data:text/html,%3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E"
+<!-- 
+<script>
+console.log('🛑 -- For DEV use only.',
+encodeURIComponent('<span style="display:flex;margin-top:70vh;font-size:3rem;color:#ff09;justify-content:center;background-blend-mode:multiply;">It\'s a Wonderful World!</span>'));
+// %3Cbr%3E%3Cbr%3E%3Ch1%20align%3D%22center%22%3EIt%27s%20A%20Wonderful%20World!%3C%2Fh1%3E
+</script> 
+-->
+
+               <li><a href="data:text/html,
+%3Cspan%20style%3D%22display%3Aflex%3Bmargin-top%3A70vh%3Bfont-size%3A3rem%3Bcolor%3A%23ff09%3Bjustify-content%3Acenter%3Bmix-blend-mode%3Alighten%3B%22%3EIt's%20a%20Wonderful%20World!%3C%2Fspan%3E
+                     "
                      target="viewport" type="image/jpg" onclick="{
-                      $viewport_style = 'height:100%; background: url(\'https:\/\/picsum.photos/700/900\') no-repeat center / contain, url(\'resources/images/tintin-characters.jpg\') scroll; background-size: auto 90%, auto 50%; background-blend-mode: normal ; backdrop-filter: blur(3px);';                     
+                      $viewport_style = 'height:100%; background: url(\'<?=$website['config']['resources'];?>/images/wonderful.jpg\') no-repeat 96% 5% / contain, url(\'https:\/\/picsum.photos/1600/1200\') scroll; background-size: auto 60%, auto 100%; background-blend-mode: normal ; backdrop-filter: blur(3px);';
                   viewport.location.reload();
                   this.blur();
                   // viewport.focus();
                   }">
-                     <!-- https:\/\/picsum.photos/800/900/?blur=1&random=2 -->
-                     <!-- resources/images/tintin-characters.jpg -->
                      Look<i class='smaller'>&emsp;··· A Random Picture</i>
                   </a></li>
             </ul>
          </li>
 
          <li class="nav-tags">
-            ►<b>&nbsp;&nbsp;Online Projects</b>
+
+            ►<b>&nbsp;&nbsp;Projects Portfolio</b>
+
             <ul class="dropdown">
                <li><a href="https://sanskara-alpha.netlify.app" target="viewport" onclick="{
                      $viewport_style = 'background-color:rgba(255,255,255,0.9); scroll:none;backdrop-filter: blur(15px);';
@@ -382,23 +398,32 @@ include_once "admin/config.php";
          </li>
 
          <li class="nav-tags">
+
             &emsp14;&iopf;&nbsp;&nbsp;App Info
+
             <ul class="dropdown">
                <small>
-                  <div style="width:40vw;">
+                  <div style="width:40vw; font-size: 0.8rem;">
                      <?php foreach ($app['info'] as $info) {
-                        echo "<p>&emsp;";
-                        echo $info[0]  . "<i class='smaller'>";
+                        echo "<p class='smaller'>&emsp;";
+                        echo $info[0];
+                        echo "<span>";
                         echo $info[1];
                         echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
-                        echo "</i></p>";
+                        echo "</span>";
+                        echo "</p>";
                      }
                      ?>
                   </div>
                </small>
-               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo"><img
-                     src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=5" border="0"
-                     width="88" height="31"></a>
+               <div style="margin: 10px;">
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo">
+                  <img src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=<?=rand(2,3)?>" border="0" width="88" >
+               </a>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo">
+                  <img src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=<?=rand(5,5)?>" border="0" width="88" >
+               </a>
+               </div>
             </ul>
          </li>
 
@@ -410,7 +435,7 @@ include_once "admin/config.php";
       </column>
 
       <column class="col-right">
-         <iframe name="viewport" class="transitor" src="modules/canvas/canvas.php" loading="eager" frameborder="0"
+         <iframe name="viewport" class="transitor" src="<?=$website['config']['components']['canvas'];?>" loading="eager" frameborder="0"  
             srcdocxx="" title="viewport" height="0" onLoad="{
             this.style = $viewport_style;
             this.removeAttribute('srcdocxx');
@@ -422,9 +447,13 @@ include_once "admin/config.php";
    </row>
 
    <footer>
-      📞 <a id="phone" href="tel:+4917646774278">+49 176 4677 4278</a>
-   </footer>
 
+      <span style="display:flex;align-items: center;font-size: 0.8rem; background-color:#0008;border-radius:5px;"> &nbsp;
+      <img  src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPldoYXRzQXBwPC90aXRsZT48cGF0aCBkPSJNMTcuNDcyIDE0LjM4MmMtLjI5Ny0uMTQ5LTEuNzU4LS44NjctMi4wMy0uOTY3LS4yNzMtLjA5OS0uNDcxLS4xNDgtLjY3LjE1LS4xOTcuMjk3LS43NjcuOTY2LS45NCAxLjE2NC0uMTczLjE5OS0uMzQ3LjIyMy0uNjQ0LjA3NS0uMjk3LS4xNS0xLjI1NS0uNDYzLTIuMzktMS40NzUtLjg4My0uNzg4LTEuNDgtMS43NjEtMS42NTMtMi4wNTktLjE3My0uMjk3LS4wMTgtLjQ1OC4xMy0uNjA2LjEzNC0uMTMzLjI5OC0uMzQ3LjQ0Ni0uNTIuMTQ5LS4xNzQuMTk4LS4yOTguMjk4LS40OTcuMDk5LS4xOTguMDUtLjM3MS0uMDI1LS41Mi0uMDc1LS4xNDktLjY2OS0xLjYxMi0uOTE2LTIuMjA3LS4yNDItLjU3OS0uNDg3LS41LS42NjktLjUxLS4xNzMtLjAwOC0uMzcxLS4wMS0uNTctLjAxLS4xOTggMC0uNTIuMDc0LS43OTIuMzcyLS4yNzIuMjk3LTEuMDQgMS4wMTYtMS4wNCAyLjQ3OSAwIDEuNDYyIDEuMDY1IDIuODc1IDEuMjEzIDMuMDc0LjE0OS4xOTggMi4wOTYgMy4yIDUuMDc3IDQuNDg3LjcwOS4zMDYgMS4yNjIuNDg5IDEuNjk0LjYyNS43MTIuMjI3IDEuMzYuMTk1IDEuODcxLjExOC41NzEtLjA4NSAxLjc1OC0uNzE5IDIuMDA2LTEuNDEzLjI0OC0uNjk0LjI0OC0xLjI4OS4xNzMtMS40MTMtLjA3NC0uMTI0LS4yNzItLjE5OC0uNTctLjM0N20tNS40MjEgNy40MDNoLS4wMDRhOS44NyA5Ljg3IDAgMDEtNS4wMzEtMS4zNzhsLS4zNjEtLjIxNC0zLjc0MS45ODIuOTk4LTMuNjQ4LS4yMzUtLjM3NGE5Ljg2IDkuODYgMCAwMS0xLjUxLTUuMjZjLjAwMS01LjQ1IDQuNDM2LTkuODg0IDkuODg4LTkuODg0IDIuNjQgMCA1LjEyMiAxLjAzIDYuOTg4IDIuODk4YTkuODI1IDkuODI1IDAgMDEyLjg5MyA2Ljk5NGMtLjAwMyA1LjQ1LTQuNDM3IDkuODg0LTkuODg1IDkuODg0bTguNDEzLTE4LjI5N0ExMS44MTUgMTEuODE1IDAgMDAxMi4wNSAwQzUuNDk1IDAgLjE2IDUuMzM1LjE1NyAxMS44OTJjMCAyLjA5Ni41NDcgNC4xNDIgMS41ODggNS45NDVMLjA1NyAyNGw2LjMwNS0xLjY1NGExMS44ODIgMTEuODgyIDAgMDA1LjY4MyAxLjQ0OGguMDA1YzYuNTU0IDAgMTEuODktNS4zMzUgMTEuODkzLTExLjg5M2ExMS44MjEgMTEuODIxIDAgMDAtMy40OC04LjQxM1oiLz48L3N2Zz4=" width=20 height=20>
+        &nbsp;<?=$app['info']['phone'][1]?>
+      </span>
+
+   </footer>
 
 </body>
 
