@@ -271,7 +271,7 @@
          <span style="font-size:1rem;">
              <?= $app['info']['version'][1]; ?>
              <?= ($app['info']['version'][2] == 'beta') ?
-             '<a href=".." style="font-size:0.5rem;" target="_top"><i>' . $app['info']['version'][2] . '</i></a>'
+             '<a href=".." style="font-size:0.5rem;" target="_parent"><i>' . $app['info']['version'][2] . '</i></a>'
              : ''; ?>
          </span>
       </div>
@@ -355,7 +355,7 @@ encodeURIComponent('<span style="display:flex;margin-top:70vh;font-size:3rem;col
 %3Cspan%20style%3D%22display%3Aflex%3Bmargin-top%3A70vh%3Bfont-size%3A3rem%3Bcolor%3A%23ff09%3Bjustify-content%3Acenter%3Bmix-blend-mode%3Alighten%3B%22%3EIt's%20a%20Wonderful%20World!%3C%2Fspan%3E
                      "
                      target="viewport" type="image/jpg" onclick="{
-                      $viewport_style = 'height:100%; background: url(\'<?=$website['config']['resources'];?>/images/wonderful.jpg\') no-repeat 96% 5% / contain, url(\'https:\/\/picsum.photos/1600/1200\') scroll; background-size: auto 60%, auto 100%; background-blend-mode: normal ; backdrop-filter: blur(3px);';
+                      $viewport_style = 'height:100%; background: url(\'<?=$website['config']['resources'];?>/images/wonderful.jpg\') no-repeat 97% 8% / contain, url(\'https:\/\/picsum.photos/1600/1200\') scroll center center; background-size: auto 60%, auto 100%; background-blend-mode: luminosity ; backdrop-filter: blur(3px);';
                   viewport.location.reload();
                   this.blur();
                   // viewport.focus();
@@ -406,9 +406,9 @@ encodeURIComponent('<span style="display:flex;margin-top:70vh;font-size:3rem;col
                   <div style="width:40vw; font-size: 0.8rem;">
                      <?php foreach ($app['info'] as $info) {
                         echo "<p class='smaller'>&emsp;";
-                        echo $info[0];
+                        echo "<span style=\"color:grey;\">$info[0]</span>";
                         echo "<span>";
-                        echo $info[1];
+                        echo nl2br($info[1]);
                         echo isset($info[2]) ? ' (' . $info[2] . ')' : '';
                         echo "</span>";
                         echo "</p>";
@@ -417,10 +417,14 @@ encodeURIComponent('<span style="display:flex;margin-top:70vh;font-size:3rem;col
                   </div>
                </small>
                <div style="margin: 10px;">
-               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo">
+               <p style="position:absolute;z-index:10;left:40%;bottom:1px;color:#ff38;font-size:10px;">
+                  Sponsors</p>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo" target="_blank">
                   <img src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=<?=rand(2,3)?>" border="0" width="88" >
                </a>
-               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo">
+               <a href="https://www.netcup.com"><img src="https://www.netcup.com/uploads/netcup_set_C_234x60_51f4bb2f8c.png" width="234" height="60" alt="netcup.com" />
+               </a>
+               <a href="https://www.omnis.com/tracker/affiliates.php?name=BBKCXTE874;adid=omnistogo" target="_blank">
                   <img src="https://www.omnis.com/tracker/image.php?name=BBKCXTE874;adid=omnistogo;image=<?=rand(5,5)?>" border="0" width="88" >
                </a>
                </div>

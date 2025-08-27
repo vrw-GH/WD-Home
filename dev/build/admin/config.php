@@ -15,7 +15,7 @@ $app['info']['name'] = [
 ];
 $app['info']['description'] = [
    "",
-   "The Wright's Desk is an online showcase for all our blogs, articles, news, development projects, galleries, and other stuff."
+   "The Wright's Desk is an online showcase for all blogs, articles, news, development projects, galleries, and other stuff."
 ];
 $app['info']['author'] = [
    "Author: ",
